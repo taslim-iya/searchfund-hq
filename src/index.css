@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg: #ffffff; --bg-alt: #f7f7fa; --surface: #ffffff; --surface-hover: #f7f7fa;
+    --border: #eaeaea; --border-light: #f0f0f0;
+    --text-primary: #171717; --text-secondary: #666; --text-tertiary: #999;
+    --accent: #6366f1; --accent-hover: #5558e6; --accent-light: rgba(99,102,241,0.06);
+    --accent-2: #10b981; --accent-3: #f59e0b; --danger: #ef4444;
+    --purple: #8b5cf6; --blue: #3b82f6; --pink: #ec4899;
+    --radius: 0.75rem; --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-family: var(--font); background: var(--bg); color: var(--text-primary); -webkit-font-smoothing: antialiased; }
+  body { min-height: 100dvh; }
+}
+
+@layer components {
+  .btn-primary {
+    display:inline-flex;align-items:center;gap:6px;padding:8px 16px;
+    background:var(--accent);color:white;border:none;border-radius:var(--radius);
+    font-size:13px;font-weight:600;cursor:pointer;transition:all .15s;
+    font-family:var(--font);white-space:nowrap;text-decoration:none;
+  }
+  .btn-primary:hover{background:var(--accent-hover);transform:translateY(-0.5px)}
+  .btn-primary:disabled{opacity:.5;cursor:not-allowed;transform:none}
+  .btn-secondary {
+    display:inline-flex;align-items:center;gap:6px;padding:8px 16px;
+    background:transparent;color:var(--text-secondary);border:1px solid var(--border);
+    border-radius:var(--radius);font-size:13px;font-weight:500;cursor:pointer;
+    transition:all .15s;font-family:var(--font);white-space:nowrap;text-decoration:none;
+  }
+  .btn-secondary:hover{border-color:var(--text-tertiary);color:var(--text-primary);background:var(--bg-alt)}
+  .btn-danger {
+    display:inline-flex;align-items:center;gap:6px;padding:8px 16px;
+    background:transparent;color:var(--danger);border:1px solid rgba(239,68,68,.2);
+    border-radius:var(--radius);font-size:13px;font-weight:500;cursor:pointer;
+    transition:all .15s;font-family:var(--font);
+  }
+  .btn-danger:hover{background:rgba(239,68,68,.05)}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);transition:box-shadow .2s}
+  .card:hover{box-shadow:0 2px 8px rgba(0,0,0,.04)}
+  .input{width:100%;padding:8px 12px;background:var(--bg);border:1px solid var(--border);border-radius:8px;font-size:13px;color:var(--text-primary);outline:none;font-family:var(--font);transition:border-color .15s}
+  .input:focus{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-light)}
+  .input::placeholder{color:var(--text-tertiary)}
+  .badge{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:600;letter-spacing:.01em}
+  .mono{font-family:'JetBrains Mono','SF Mono',monospace}
+}
