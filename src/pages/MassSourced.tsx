@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useAppStore, emptyCompany } from '@/store/appStore';
 import { Building2, Search, Plus, CheckCircle, Download, ChevronLeft, ChevronRight, ExternalLink, Database, Loader2, TrendingUp, MapPin, BarChart3, ArrowUpDown } from 'lucide-react';
+import CompanyDetail from '@/components/CompanyDetail';
 
 interface SectorInfo { name: string; slug: string; count: number; sizeKB: number; }
 interface Summary { total: number; sectors: SectorInfo[]; generated: string; }
@@ -19,6 +20,7 @@ export default function MassSourced() {
   const [page, setPage] = useState(0);
   const [sortBy, setSortBy] = useState<'name' | 'age' | 'location'>('name');
   const [selected, setSelected] = useState<Set<string>>(new Set());
+  const [detailCompany, setDetailCompany] = useState<{ num: string; name: string } | null>(null);
 
   useEffect(() => {
     fetch('/data/summary.json').then(r => r.json()).then(setSummary).catch(() => {});
@@ -189,7 +191,7 @@ export default function MassSourced() {
                   {pageData.map(c => {
                     const age = getAge(c.y);
                     return (
-                      <tr key={c.num} className="hover:bg-[var(--bg-alt)] transition-colors" style={{ borderBottom: '1px solid var(--border-light)' }}>
+                      <tr key={c.num} onClick={() => setDetailCompany({ num: c.num, name: c.n })} className="cursor-pointer hover:bg-[var(--bg-alt)] transition-colors" style={{ borderBottom: '1px solid var(--border-light)' }}>
                         <td className="px-3 py-2">
                           <p className="font-medium text-[12px] leading-tight">{c.n}</p>
                           <p className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>{c.num}</p>
@@ -249,6 +251,15 @@ export default function MassSourced() {
             </div>
           </div>
         </>
+      )}
+
+      {/* Company detail panel */}
+      {detailCompany && (
+        <CompanyDetail
+          companyNumber={detailCompany.num}
+          companyName={detailCompany.name}
+          onClose={() => setDetailCompany(null)}
+        />
       )}
     </div>
   );

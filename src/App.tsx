@@ -10,6 +10,7 @@ import Outreach from '@/pages/Outreach';
 import Reports from '@/pages/Reports';
 import Sourced from '@/pages/Sourced';
 import MassSourced from '@/pages/MassSourced';
+import Research from '@/pages/Research';
 import Settings from '@/pages/Settings';
 
 export default function App() {
@@ -27,6 +28,7 @@ export default function App() {
           <Route path="/reports" element={<Reports />} />
           <Route path="/sourced" element={<Sourced />} />
           <Route path="/database" element={<MassSourced />} />
+          <Route path="/research" element={<Research />} />
           <Route path="/settings" element={<Settings />} />
         </Route>
       </Routes>
