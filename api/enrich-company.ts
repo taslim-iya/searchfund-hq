@@ -10,6 +10,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   const { companyNumber, companyName, website, companiesHouseKey, openaiKey, apolloKey } = req.body;
 
+  // Fall back to server-side env vars
+  const resolvedOpenaiKey = openaiKey || process.env.OPENAI_API_KEY || '';
+  const resolvedApolloKey = apolloKey || process.env.APOLLO_API_KEY || '';
+
   if (!companyNumber || !companiesHouseKey) {
     return res.status(400).json({ error: 'Missing companyNumber or companiesHouseKey' });
   }
@@ -97,13 +101,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     // 3. Apollo.io contact enrichment (if key provided)
-    if (apolloKey && companyName) {
+    if (resolvedApolloKey && companyName) {
       try {
         const apolloRes = await fetch('https://api.apollo.io/v1/mixed_people/search', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-cache' },
           body: JSON.stringify({
-            api_key: apolloKey,
+            api_key: resolvedApolloKey,
             q_organization_name: companyName,
             page: 1,
             per_page: 5,
@@ -141,7 +145,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     // 4. AI Analysis (if OpenAI key provided)
-    if (openaiKey) {
+    if (resolvedOpenaiKey) {
       try {
         const context = JSON.stringify({
           company: results.companyHouse,
@@ -153,7 +157,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
         const aiRes = await fetch('https://api.openai.com/v1/chat/completions', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${openaiKey}` },
+          headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${resolvedOpenaiKey}` },
           body: JSON.stringify({
             model: 'gpt-4o',
             messages: [{
