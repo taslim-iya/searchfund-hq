@@ -112,17 +112,17 @@ export default function MassSourced() {
           <p className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>Total Companies</p>
         </div>
         <div className="card p-4">
-          <BarChart3 size={14} className="mb-1" style={{ color: '#10b981' }} />
+          <BarChart3 size={14} className="mb-1" style={{ color: '#3fcf8e' }} />
           <p className="text-2xl font-bold mono">{summary.sectors.length}</p>
           <p className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>Sectors Covered</p>
         </div>
         <div className="card p-4">
-          <MapPin size={14} className="mb-1" style={{ color: '#f59e0b' }} />
+          <MapPin size={14} className="mb-1" style={{ color: '#f0b429' }} />
           <p className="text-2xl font-bold mono">8–31yr</p>
           <p className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>Company Age Range</p>
         </div>
         <div className="card p-4">
-          <Building2 size={14} className="mb-1" style={{ color: '#8b5cf6' }} />
+          <Building2 size={14} className="mb-1" style={{ color: '#a855f7' }} />
           <p className="text-2xl font-bold mono" style={{ color: 'var(--accent)' }}>{companies.length}</p>
           <p className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>In Your Pipeline</p>
         </div>
@@ -170,7 +170,7 @@ export default function MassSourced() {
               <p className="text-[11px] font-semibold">{summary.sectors.find(s => s.slug === activeSector)?.name}</p>
               <span className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>· {filtered.length.toLocaleString()} companies</span>
               <div className="ml-auto flex gap-2">
-                <button onClick={importPage} className="text-[10px] font-medium" style={{ color: '#10b981' }}>
+                <button onClick={importPage} className="text-[10px] font-medium" style={{ color: '#3fcf8e' }}>
                   Import page ({pageData.filter(c => !alreadyImported(c.num)).length})
                 </button>
               </div>
@@ -202,7 +202,7 @@ export default function MassSourced() {
                         </td>
                         <td className="px-3 py-2 mono text-[11px]">{c.y}</td>
                         <td className="px-3 py-2">
-                          <span className="mono text-[11px]" style={{ color: age >= 15 ? '#10b981' : age >= 8 ? '#f59e0b' : 'var(--text-tertiary)' }}>
+                          <span className="mono text-[11px]" style={{ color: age >= 15 ? '#3fcf8e' : age >= 8 ? '#f0b429' : 'var(--text-tertiary)' }}>
                             {age}yr
                           </span>
                         </td>
@@ -214,7 +214,7 @@ export default function MassSourced() {
                             <a href={`https://find-and-update.company-information.service.gov.uk/company/${c.num}`} target="_blank"
                               className="btn-secondary text-[9px] py-0.5 px-1.5"><ExternalLink size={9} /></a>
                             {alreadyImported(c.num) ? (
-                              <span className="text-[9px]" style={{ color: '#10b981' }}><CheckCircle size={10} /></span>
+                              <span className="text-[9px]" style={{ color: '#3fcf8e' }}><CheckCircle size={10} /></span>
                             ) : (
                               <button onClick={() => importCompany(c)} className="btn-primary text-[9px] py-0.5 px-1.5"><Plus size={9} /></button>
                             )}

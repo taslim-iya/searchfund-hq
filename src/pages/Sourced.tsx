@@ -3,7 +3,7 @@ import { sourcedCompanies, sectorStats, type SourcedCompany } from '@/data/sourc
 import { useAppStore, emptyCompany } from '@/store/appStore';
 import { Building2, ExternalLink, Globe, Search, Star, ArrowUpRight, Plus, CheckCircle, Filter, BarChart3, MapPin, Calendar, User, FileText, ChevronRight, X } from 'lucide-react';
 
-const ATTRACT_COLORS = { high: '#10b981', medium: '#f59e0b', low: '#999' };
+const ATTRACT_COLORS = { high: '#3fcf8e', medium: '#f0b429', low: '#94a3b8' };
 
 export default function Sourced() {
   const { companies, addCompany, addActivity } = useAppStore();
@@ -54,7 +54,7 @@ export default function Sourced() {
       {/* Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
         <div className="card p-4"><p className="text-2xl font-bold mono">{sourcedCompanies.length}</p><p className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>Companies Sourced</p></div>
-        <div className="card p-4"><p className="text-2xl font-bold mono" style={{ color: '#10b981' }}>{highCount}</p><p className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>High Attractiveness</p></div>
+        <div className="card p-4"><p className="text-2xl font-bold mono" style={{ color: '#3fcf8e' }}>{highCount}</p><p className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>High Attractiveness</p></div>
         <div className="card p-4"><p className="text-2xl font-bold mono">{avgAge}yr</p><p className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>Average Age</p></div>
         <div className="card p-4"><p className="text-2xl font-bold mono">{sectors.length}</p><p className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>Sector Categories</p></div>
       </div>
@@ -119,7 +119,7 @@ export default function Sourced() {
                   <a href={c.chUrl} target="_blank" onClick={e => e.stopPropagation()} className="btn-secondary text-[9px] py-1 px-2"><Building2 size={9} /> CH</a>
                   {c.website && <a href={`https://${c.website}`} target="_blank" onClick={e => e.stopPropagation()} className="btn-secondary text-[9px] py-1 px-2"><Globe size={9} /> Web</a>}
                   {imported ? (
-                    <span className="badge text-[9px]" style={{ background: '#10b98115', color: '#10b981' }}><CheckCircle size={9} /> In Pipeline</span>
+                    <span className="badge text-[9px]" style={{ background: '#3fcf8e15', color: '#3fcf8e' }}><CheckCircle size={9} /> In Pipeline</span>
                   ) : (
                     <button onClick={e => { e.stopPropagation(); importToPipeline(c); }} className="btn-primary text-[9px] py-1 px-2"><Plus size={9} /> Import</button>
                   )}
@@ -177,7 +177,7 @@ export default function Sourced() {
                 {!alreadyImported(detail.number) ? (
                   <button onClick={() => { importToPipeline(detail); setDetail(null); }} className="btn-primary w-full justify-center text-[12px]"><Plus size={12} /> Import to Pipeline</button>
                 ) : (
-                  <p className="text-center text-[11px] font-medium" style={{ color: '#10b981' }}><CheckCircle size={12} className="inline mr-1" />Already in your pipeline</p>
+                  <p className="text-center text-[11px] font-medium" style={{ color: '#3fcf8e' }}><CheckCircle size={12} className="inline mr-1" />Already in your pipeline</p>
                 )}
               </div>
             </div>

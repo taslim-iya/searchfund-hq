@@ -5,11 +5,11 @@ import { Search, Filter, Building2, User, Mail, Phone, Globe, ExternalLink, Chev
 
 const CRM_STAGES: { id: CompanyStage; label: string; color: string }[] = [
   { id: 'imported', label: 'Lead', color: '#6b7280' },
-  { id: 'researching', label: 'Researching', color: '#3b82f6' },
-  { id: 'enriched', label: 'Enriched', color: '#8b5cf6' },
-  { id: 'outreach-ready', label: 'Ready', color: '#f59e0b' },
+  { id: 'researching', label: 'Researching', color: '#0ea5e9' },
+  { id: 'enriched', label: 'Enriched', color: '#a855f7' },
+  { id: 'outreach-ready', label: 'Ready', color: '#f0b429' },
   { id: 'outreach-sent', label: 'Contacted', color: '#f97316' },
-  { id: 'replied', label: 'Replied', color: '#10b981' },
+  { id: 'replied', label: 'Replied', color: '#3fcf8e' },
   { id: 'meeting', label: 'Meeting', color: '#06b6d4' },
   { id: 'passed', label: 'Passed', color: '#ef4444' },
 ];
@@ -179,7 +179,7 @@ export default function CRM() {
                     <p className="text-[12px] font-semibold leading-tight mb-1">{c.name}</p>
                     {c.ownerName && <p className="text-[10px] flex items-center gap-1" style={{ color: 'var(--text-secondary)' }}><User size={9} />{c.ownerName}</p>}
                     {c.location && <p className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>{c.location}</p>}
-                    {c.revenue && <p className="text-[10px] font-medium" style={{ color: '#10b981' }}>{c.revenue}</p>}
+                    {c.revenue && <p className="text-[10px] font-medium" style={{ color: '#3fcf8e' }}>{c.revenue}</p>}
                     <div className="flex items-center gap-1 mt-1.5">
                       {c.ownerEmail && <Mail size={9} style={{ color: 'var(--text-tertiary)' }} />}
                       {c.ownerPhone && <Phone size={9} style={{ color: 'var(--text-tertiary)' }} />}
@@ -225,7 +225,7 @@ export default function CRM() {
                       {!c.ownerEmail && <span className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>No email</span>}
                     </div>
                   </td>
-                  <td className="px-3 py-2 mono text-[11px]" style={{ color: c.revenue ? '#10b981' : 'var(--text-tertiary)' }}>{c.revenue || '—'}</td>
+                  <td className="px-3 py-2 mono text-[11px]" style={{ color: c.revenue ? '#3fcf8e' : 'var(--text-tertiary)' }}>{c.revenue || '—'}</td>
                   <td className="px-3 py-2">
                     <select value={c.stage} onChange={e => { e.stopPropagation(); moveStage(c.id, e.target.value as CompanyStage); }}
                       onClick={e => e.stopPropagation()} className="text-[10px] px-2 py-0.5 rounded border-0 font-medium"
@@ -300,7 +300,7 @@ export default function CRM() {
                   <p className="text-[11px] font-semibold mb-1">Strengths</p>
                   <div className="flex flex-wrap gap-1">
                     {detail.enrichmentData.strengths.map((s, i) => (
-                      <span key={i} className="badge text-[9px]" style={{ background: '#10b98115', color: '#10b981' }}>{s}</span>
+                      <span key={i} className="badge text-[9px]" style={{ background: '#3fcf8e15', color: '#3fcf8e' }}>{s}</span>
                     ))}
                   </div>
                 </div>

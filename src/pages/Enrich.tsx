@@ -141,8 +141,8 @@ export default function Enrich() {
         ) : display.map(c => (
           <div key={c.id} className="card p-3.5 flex items-center gap-3">
             <div className="w-7 h-7 rounded-md flex items-center justify-center flex-shrink-0"
-              style={{ background: c.enrichedAt ? '#10b98110' : 'var(--bg-alt)' }}>
-              {c.enrichedAt ? <CheckCircle size={13} color="#10b981" /> : <Building2 size={13} style={{ color: 'var(--text-tertiary)' }} />}
+              style={{ background: c.enrichedAt ? '#3fcf8e10' : 'var(--bg-alt)' }}>
+              {c.enrichedAt ? <CheckCircle size={13} color="#3fcf8e" /> : <Building2 size={13} style={{ color: 'var(--text-tertiary)' }} />}
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-[12px] font-medium truncate">{c.name}</p>
@@ -152,7 +152,7 @@ export default function Enrich() {
               </p>
             </div>
             {c.enrichedAt ? (
-              <span className="text-[12px] font-bold mono flex-shrink-0" style={{ color: c.score >= 70 ? '#10b981' : c.score >= 40 ? '#f59e0b' : 'var(--text-tertiary)' }}>{c.score}/100</span>
+              <span className="text-[12px] font-bold mono flex-shrink-0" style={{ color: c.score >= 70 ? '#3fcf8e' : c.score >= 40 ? '#f0b429' : 'var(--text-tertiary)' }}>{c.score}/100</span>
             ) : (
               <button onClick={() => enrich(c.id)} disabled={enriching.has(c.id) || batchRunning} className="btn-secondary text-[10px] py-1 px-2 flex-shrink-0">
                 {enriching.has(c.id) ? <Loader2 size={10} className="animate-spin" /> : <Sparkles size={10} />} Enrich

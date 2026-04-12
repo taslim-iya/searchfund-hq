@@ -32,7 +32,7 @@ interface Interaction {
   summary: string;
 }
 
-const STATUS_COLORS = { active: '#10b981', warm: '#f59e0b', cold: '#6b7280', new: '#3b82f6' };
+const STATUS_COLORS = { active: '#3fcf8e', warm: '#f0b429', cold: '#6b7280', new: '#0ea5e9' };
 
 export default function Brokers() {
   const [brokers, setBrokers] = useState<Broker[]>(() => {
@@ -105,8 +105,8 @@ export default function Brokers() {
       {/* Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
         <div className="card p-3"><p className="text-2xl font-bold mono">{brokers.length}</p><p className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>Total Brokers</p></div>
-        <div className="card p-3"><p className="text-2xl font-bold mono" style={{ color: '#10b981' }}>{activeCount}</p><p className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>Active</p></div>
-        <div className="card p-3"><p className="text-2xl font-bold mono" style={{ color: '#f59e0b' }}>{warmCount}</p><p className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>Warm</p></div>
+        <div className="card p-3"><p className="text-2xl font-bold mono" style={{ color: '#3fcf8e' }}>{activeCount}</p><p className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>Active</p></div>
+        <div className="card p-3"><p className="text-2xl font-bold mono" style={{ color: '#f0b429' }}>{warmCount}</p><p className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>Warm</p></div>
         <div className="card p-3"><p className="text-2xl font-bold mono" style={{ color: 'var(--accent)' }}>{totalDeals}</p><p className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>Deals Shared</p></div>
       </div>
 
@@ -164,7 +164,7 @@ export default function Brokers() {
                     {b.dealSizeMin && `£${b.dealSizeMin}-${b.dealSizeMax}`}
                   </p>
                   {b.lastContact && <p className="text-[9px]" style={{ color: 'var(--text-tertiary)' }}>Last: {b.lastContact}</p>}
-                  {b.nextFollowUp && <p className="text-[9px]" style={{ color: '#f59e0b' }}>Follow up: {b.nextFollowUp}</p>}
+                  {b.nextFollowUp && <p className="text-[9px]" style={{ color: '#f0b429' }}>Follow up: {b.nextFollowUp}</p>}
                 </div>
               </div>
             </div>

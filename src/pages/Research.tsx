@@ -19,7 +19,7 @@ interface Sector {
   source?: string;
 }
 
-const HML_COLORS = { H: '#10b981', M: '#f59e0b', L: '#ef4444' };
+const HML_COLORS = { H: '#3fcf8e', M: '#f0b429', L: '#ef4444' };
 
 export default function Research() {
   const { config } = useAppStore();
@@ -152,7 +152,7 @@ export default function Research() {
 
   const HMLBadge = ({ v }: { v: string }) => (
     <span className="inline-flex items-center justify-center w-5 h-5 rounded text-[9px] font-bold"
-      style={{ background: `${HML_COLORS[v as keyof typeof HML_COLORS] || '#999'}15`, color: HML_COLORS[v as keyof typeof HML_COLORS] || '#999' }}>
+      style={{ background: `${HML_COLORS[v as keyof typeof HML_COLORS] || '#94a3b8'}15`, color: HML_COLORS[v as keyof typeof HML_COLORS] || '#94a3b8' }}>
       {v}
     </span>
   );
@@ -197,7 +197,7 @@ export default function Research() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
         <div className="card p-3"><p className="text-2xl font-bold mono">{sectors.length}</p><p className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>Sub-Niches</p></div>
         <div className="card p-3"><p className="text-2xl font-bold mono">{categories.length}</p><p className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>Categories</p></div>
-        <div className="card p-3"><p className="text-2xl font-bold mono" style={{ color: '#10b981' }}>{avgScore}</p><p className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>Avg Score</p></div>
+        <div className="card p-3"><p className="text-2xl font-bold mono" style={{ color: '#3fcf8e' }}>{avgScore}</p><p className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>Avg Score</p></div>
         <div className="card p-3"><p className="text-2xl font-bold mono" style={{ color: 'var(--accent)' }}>{topNiches[0]?.totalScore || 0}</p><p className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>Top Score</p></div>
       </div>
 
@@ -208,7 +208,7 @@ export default function Research() {
           {topNiches.map((s, i) => (
             <div key={s.id || i} className="p-3 rounded-lg cursor-pointer" onClick={() => setDetail(s)}
               style={{ background: 'var(--bg-alt)' }}>
-              <p className="text-[18px] font-bold mono" style={{ color: i === 0 ? '#10b981' : 'var(--text-primary)' }}>{s.totalScore}</p>
+              <p className="text-[18px] font-bold mono" style={{ color: i === 0 ? '#3fcf8e' : 'var(--text-primary)' }}>{s.totalScore}</p>
               <p className="text-[11px] font-medium leading-tight">{s.subNiche}</p>
               <p className="text-[9px]" style={{ color: 'var(--text-tertiary)' }}>{s.category}</p>
             </div>
@@ -264,7 +264,7 @@ export default function Research() {
                   <td className="px-2 py-2 text-right mono">{s.externalSpend}%</td>
                   <td className="px-3 py-2 text-[11px]">{s.densityBenefit}</td>
                   <td className="px-2 py-2 text-right">
-                    <span className="font-bold mono text-[13px]" style={{ color: s.totalScore >= 50 ? '#10b981' : s.totalScore >= 35 ? '#f59e0b' : 'var(--text-secondary)' }}>
+                    <span className="font-bold mono text-[13px]" style={{ color: s.totalScore >= 50 ? '#3fcf8e' : s.totalScore >= 35 ? '#f0b429' : 'var(--text-secondary)' }}>
                       {s.totalScore}
                     </span>
                   </td>
@@ -291,7 +291,7 @@ export default function Research() {
             </div>
             <div className="p-5 space-y-4">
               <div className="flex items-center gap-3">
-                <span className="text-3xl font-bold mono" style={{ color: detail.totalScore >= 50 ? '#10b981' : '#f59e0b' }}>{detail.totalScore}</span>
+                <span className="text-3xl font-bold mono" style={{ color: detail.totalScore >= 50 ? '#3fcf8e' : '#f0b429' }}>{detail.totalScore}</span>
                 <div>
                   <p className="text-[12px] font-medium">{detail.category}</p>
                   <p className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>{detail.source || 'GPT Rollup Analysis'}</p>
@@ -342,7 +342,7 @@ export default function Research() {
                       <Edit2 size={10} className="inline mr-0.5" /> Edit
                     </button>
                   ) : (
-                    <button onClick={() => saveNotes(detail.id, noteText)} className="text-[10px]" style={{ color: '#10b981' }}>
+                    <button onClick={() => saveNotes(detail.id, noteText)} className="text-[10px]" style={{ color: '#3fcf8e' }}>
                       <Check size={10} className="inline mr-0.5" /> Save
                     </button>
                   )}
@@ -387,7 +387,7 @@ function ManualAddForm({ onAdd, categories }: { onAdd: (s: Omit<Sector, 'id'>) =
       <input type="number" value={f.externalSpend} onChange={e => update('externalSpend', parseFloat(e.target.value))} className="input text-[11px]" placeholder="External Spend %" />
       <input value={f.densityBenefit} onChange={e => update('densityBenefit', e.target.value)} className="input text-[11px] col-span-2" placeholder="Density Benefit (e.g. Route Density)" />
       <div className="col-span-2 flex items-center gap-2">
-        <span className="text-[11px] font-bold mono" style={{ color: '#10b981' }}>Score: {f.totalScore}</span>
+        <span className="text-[11px] font-bold mono" style={{ color: '#3fcf8e' }}>Score: {f.totalScore}</span>
         <button onClick={() => { onAdd(f as any); setF({ ...f, subNiche: '' }); }} className="btn-primary text-[11px] ml-auto"><Plus size={11} /> Add</button>
       </div>
     </div>

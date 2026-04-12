@@ -3,7 +3,7 @@ import { useAppStore, type OutreachStatus } from '@/store/appStore';
 import { Send, Sparkles, Loader2, CheckCircle, Clock, AlertCircle, Mail, Eye, Edit, X } from 'lucide-react';
 
 const STATUS_CONFIG: Record<OutreachStatus, { label: string; color: string }> = {
-  draft: { label: 'Draft', color: '#999' },
+  draft: { label: 'Draft', color: '#94a3b8' },
   'pending-review': { label: 'Pending Review', color: 'var(--accent-3)' },
   approved: { label: 'Approved', color: 'var(--accent)' },
   sent: { label: 'Sent', color: 'var(--accent-2)' },

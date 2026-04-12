@@ -86,8 +86,8 @@ export default function CompanyDetail({ companyNumber, companyName, onClose }: P
             <div className="px-5 pb-2 flex gap-1.5 flex-wrap">
               {flags.map((f: string) => (
                 <span key={f} className="badge text-[8px] font-bold" style={{
-                  background: f.includes('INSOLVENCY') || f.includes('OVERDUE') ? '#ef444415' : '#f59e0b15',
-                  color: f.includes('INSOLVENCY') || f.includes('OVERDUE') ? '#ef4444' : '#f59e0b',
+                  background: f.includes('INSOLVENCY') || f.includes('OVERDUE') ? '#ef444415' : '#f0b42915',
+                  color: f.includes('INSOLVENCY') || f.includes('OVERDUE') ? '#ef4444' : '#f0b429',
                 }}>
                   <AlertTriangle size={8} className="inline mr-0.5" /> {f.replace(/_/g, ' ')}
                 </span>
@@ -116,7 +116,7 @@ export default function CompanyDetail({ companyNumber, companyName, onClose }: P
               {tab === 'overview' && profile && (
                 <div className="space-y-4">
                   <div className="flex flex-wrap gap-2">
-                    <span className="badge text-[10px]" style={{ background: profile.company_status === 'active' ? '#10b98115' : '#ef444415', color: profile.company_status === 'active' ? '#10b981' : '#ef4444' }}>
+                    <span className="badge text-[10px]" style={{ background: profile.company_status === 'active' ? '#3fcf8e15' : '#ef444415', color: profile.company_status === 'active' ? '#3fcf8e' : '#ef4444' }}>
                       {profile.company_status?.toUpperCase()}
                     </span>
                     <span className="badge text-[10px]">{profile.type?.replace(/-/g, ' ')}</span>

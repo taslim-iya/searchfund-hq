@@ -3,7 +3,7 @@ import { useAppStore, emptyCompany, type Company, type CompanyStage } from '@/st
 import { Plus, Search, Upload, FileDown, X, Briefcase, ChevronRight, Building2, ExternalLink, Trash2, Edit } from 'lucide-react';
 
 const STAGES: CompanyStage[] = ['imported', 'researching', 'enriched', 'outreach-ready', 'outreach-sent', 'replied', 'meeting', 'passed'];
-const STAGE_COLORS: Record<CompanyStage, string> = { imported: '#999', researching: '#3b82f6', enriched: '#8b5cf6', 'outreach-ready': '#f59e0b', 'outreach-sent': '#6366f1', replied: '#10b981', meeting: '#ec4899', passed: '#ef4444' };
+const STAGE_COLORS: Record<CompanyStage, string> = { imported: '#94a3b8', researching: '#0ea5e9', enriched: '#a855f7', 'outreach-ready': '#f0b429', 'outreach-sent': '#635bff', replied: '#3fcf8e', meeting: '#ec4899', passed: '#94a3b8' };
 
 export default function Companies() {
   const { companies, interns, addCompany, updateCompany, removeCompany, importCompanies, addActivity } = useAppStore();
@@ -95,7 +95,7 @@ export default function Companies() {
                   <td className="px-3 py-2.5 text-[11px]" style={{color:'var(--text-secondary)'}}>{c.sector || '—'}</td>
                   <td className="px-3 py-2.5"><p className="text-[11px]">{c.ownerName || '—'}</p>{c.ownerEmail && <p className="text-[9px]" style={{color:'var(--text-tertiary)'}}>{c.ownerEmail}</p>}</td>
                   <td className="px-3 py-2.5"><span className="badge text-[9px] capitalize" style={{background:`${STAGE_COLORS[c.stage]}10`,color:STAGE_COLORS[c.stage]}}>{c.stage.replace('-',' ')}</span></td>
-                  <td className="px-3 py-2.5"><span className="text-[11px] font-bold mono" style={{color:c.score>=70?'#10b981':c.score>=40?'#f59e0b':'var(--text-tertiary)'}}>{c.score || '—'}</span></td>
+                  <td className="px-3 py-2.5"><span className="text-[11px] font-bold mono" style={{color:c.score>=70?'#3fcf8e':c.score>=40?'#f0b429':'var(--text-tertiary)'}}>{c.score || '—'}</span></td>
                   <td className="px-3 py-2.5"><ChevronRight size={14} style={{color:'var(--text-tertiary)'}}/></td>
                 </tr>
               ))}
@@ -115,7 +115,7 @@ export default function Companies() {
             </div>
             <div className="p-5 space-y-4">
               <div className="flex items-center gap-3">
-                <div className="text-center"><p className="text-3xl font-bold mono" style={{color:detail.score>=70?'#10b981':detail.score>=40?'#f59e0b':'var(--text-tertiary)'}}>{detail.score || 0}</p><p className="text-[10px]" style={{color:'var(--text-tertiary)'}}>Score</p></div>
+                <div className="text-center"><p className="text-3xl font-bold mono" style={{color:detail.score>=70?'#3fcf8e':detail.score>=40?'#f0b429':'var(--text-tertiary)'}}>{detail.score || 0}</p><p className="text-[10px]" style={{color:'var(--text-tertiary)'}}>Score</p></div>
                 <select value={detail.stage} onChange={e=>{updateCompany(detail.id,{stage:e.target.value as CompanyStage});setDetail({...detail,stage:e.target.value as CompanyStage})}} className="input text-[11px] flex-1">
                   {STAGES.map(s=><option key={s} value={s}>{s}</option>)}
                 </select>

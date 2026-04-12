@@ -197,13 +197,13 @@ export default function Qualify() {
                   <td className="px-3 py-2 text-[11px]">{c.ownerName || '—'}</td>
                   <td className="px-3 py-2">
                     <div className="flex gap-1">
-                      {c.ownerEmail && <CheckCircle size={10} style={{ color: '#10b981' }} />}
-                      {c.ownerPhone && <CheckCircle size={10} style={{ color: '#3b82f6' }} />}
+                      {c.ownerEmail && <CheckCircle size={10} style={{ color: '#3fcf8e' }} />}
+                      {c.ownerPhone && <CheckCircle size={10} style={{ color: '#0ea5e9' }} />}
                       {!c.ownerEmail && !c.ownerPhone && <span className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>—</span>}
                     </div>
                   </td>
                   <td className="px-3 py-2"><span className="badge text-[8px]">{c.revenue || c.enrichmentData.financials || '—'}</span></td>
-                  <td className="px-3 py-2 mono text-[11px]" style={{ color: age >= 15 ? '#10b981' : age >= 8 ? '#f59e0b' : 'var(--text-tertiary)' }}>{age || '—'}yr</td>
+                  <td className="px-3 py-2 mono text-[11px]" style={{ color: age >= 15 ? '#3fcf8e' : age >= 8 ? '#f0b429' : 'var(--text-tertiary)' }}>{age || '—'}yr</td>
                   <td className="px-3 py-2"><span className="badge text-[9px]">{c.stage}</span></td>
                 </tr>
               );

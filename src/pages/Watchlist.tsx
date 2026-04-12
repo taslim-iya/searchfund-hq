@@ -56,8 +56,8 @@ export default function Watchlist() {
       </div>
 
       {!config.companiesHouseKey && (
-        <div className="card p-4 mb-4 flex items-center gap-2" style={{ borderColor: '#f59e0b', borderWidth: 1 }}>
-          <AlertTriangle size={14} style={{ color: '#f59e0b' }} />
+        <div className="card p-4 mb-4 flex items-center gap-2" style={{ borderColor: '#f0b429', borderWidth: 1 }}>
+          <AlertTriangle size={14} style={{ color: '#f0b429' }} />
           <p className="text-[12px]">Set your Companies House API key in Settings to enable change tracking.</p>
         </div>
       )}
@@ -83,12 +83,12 @@ export default function Watchlist() {
                     <div className="flex items-center gap-2 mb-0.5">
                       <p className="text-[14px] font-semibold">{item.companyName}</p>
                       {hasChanges && (
-                        <span className="badge text-[9px]" style={{ background: '#f59e0b15', color: '#f59e0b' }}>
+                        <span className="badge text-[9px]" style={{ background: '#f0b42915', color: '#f0b429' }}>
                           <Bell size={8} className="inline mr-0.5" /> {ch.totalRecentChanges} changes
                         </span>
                       )}
                       {ch && !hasChanges && (
-                        <span className="badge text-[9px]" style={{ background: '#10b98115', color: '#10b981' }}>
+                        <span className="badge text-[9px]" style={{ background: '#3fcf8e15', color: '#3fcf8e' }}>
                           <CheckCircle size={8} className="inline mr-0.5" /> No changes
                         </span>
                       )}
@@ -138,7 +138,7 @@ export default function Watchlist() {
                       <p className="text-[10px] mt-1" style={{ color: 'var(--text-tertiary)' }}>
                         Status: {ch.status} · Accounts: {ch.lastAccountsType?.replace(/-/g, ' ')} ({ch.lastAccountsDate})
                         {ch.hasInsolvency && <span style={{ color: '#ef4444' }}> ⚠️ Insolvency history</span>}
-                        {ch.hasCharges && <span style={{ color: '#f59e0b' }}> 🔒 Has charges</span>}
+                        {ch.hasCharges && <span style={{ color: '#f0b429' }}> 🔒 Has charges</span>}
                       </p>
                     )}
                   </div>
