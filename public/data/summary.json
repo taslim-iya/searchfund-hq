@@ -1,0 +1,294 @@
+{
+  "total": 812370,
+  "sectors": [
+    {
+      "name": "IT & Software",
+      "slug": "it-software",
+      "count": 98274,
+      "sizeKB": 13269
+    },
+    {
+      "name": "Business Support",
+      "slug": "business-support",
+      "count": 91453,
+      "sizeKB": 12662
+    },
+    {
+      "name": "Consultancy",
+      "slug": "consultancy",
+      "count": 85286,
+      "sizeKB": 11803
+    },
+    {
+      "name": "Personal Services",
+      "slug": "personal-services",
+      "count": 62322,
+      "sizeKB": 8591
+    },
+    {
+      "name": "Electrical & Plumbing",
+      "slug": "electrical-plumbing",
+      "count": 48383,
+      "sizeKB": 6878
+    },
+    {
+      "name": "Building Completion",
+      "slug": "building-completion",
+      "count": 38007,
+      "sizeKB": 5334
+    },
+    {
+      "name": "Estate Agency",
+      "slug": "estate-agency",
+      "count": 33374,
+      "sizeKB": 4716
+    },
+    {
+      "name": "Architecture & Engineering",
+      "slug": "architecture-engineering",
+      "count": 30889,
+      "sizeKB": 4321
+    },
+    {
+      "name": "Accounting & Tax",
+      "slug": "accounting-tax",
+      "count": 28856,
+      "sizeKB": 4019
+    },
+    {
+      "name": "Specialist Construction",
+      "slug": "specialist-construction",
+      "count": 27889,
+      "sizeKB": 3925
+    },
+    {
+      "name": "Dental & Medical",
+      "slug": "dental-medical",
+      "count": 26450,
+      "sizeKB": 3643
+    },
+    {
+      "name": "Other Health",
+      "slug": "other-health",
+      "count": 25049,
+      "sizeKB": 3447
+    },
+    {
+      "name": "Restaurants & Cafes",
+      "slug": "restaurants-cafes",
+      "count": 24980,
+      "sizeKB": 3379
+    },
+    {
+      "name": "Car Repair",
+      "slug": "car-repair",
+      "count": 19780,
+      "sizeKB": 2779
+    },
+    {
+      "name": "Freight & Logistics",
+      "slug": "freight-logistics",
+      "count": 18151,
+      "sizeKB": 2467
+    },
+    {
+      "name": "Sports & Fitness",
+      "slug": "sports-fitness",
+      "count": 13155,
+      "sizeKB": 1833
+    },
+    {
+      "name": "Education & Training",
+      "slug": "education-training",
+      "count": 12459,
+      "sizeKB": 1740
+    },
+    {
+      "name": "Design Services",
+      "slug": "design-services",
+      "count": 12128,
+      "sizeKB": 1651
+    },
+    {
+      "name": "Advertising",
+      "slug": "advertising",
+      "count": 10807,
+      "sizeKB": 1467
+    },
+    {
+      "name": "IT Retail",
+      "slug": "it-retail",
+      "count": 9045,
+      "sizeKB": 1261
+    },
+    {
+      "name": "Cleaning & Pest Control",
+      "slug": "cleaning-pest-control",
+      "count": 8880,
+      "sizeKB": 1249
+    },
+    {
+      "name": "Catering",
+      "slug": "catering",
+      "count": 8559,
+      "sizeKB": 1171
+    },
+    {
+      "name": "Recruitment",
+      "slug": "recruitment",
+      "count": 8405,
+      "sizeKB": 1168
+    },
+    {
+      "name": "Landscaping",
+      "slug": "landscaping",
+      "count": 6437,
+      "sizeKB": 916
+    },
+    {
+      "name": "Travel Agency",
+      "slug": "travel-agency",
+      "count": 4857,
+      "sizeKB": 665
+    },
+    {
+      "name": "Printing",
+      "slug": "printing",
+      "count": 4258,
+      "sizeKB": 591
+    },
+    {
+      "name": "Data Processing",
+      "slug": "data-processing",
+      "count": 4027,
+      "sizeKB": 538
+    },
+    {
+      "name": "Metal Fabrication",
+      "slug": "metal-fabrication",
+      "count": 3952,
+      "sizeKB": 564
+    },
+    {
+      "name": "Nurseries & Childcare",
+      "slug": "nurseries-childcare",
+      "count": 3916,
+      "sizeKB": 561
+    },
+    {
+      "name": "Temp Staffing",
+      "slug": "temp-staffing",
+      "count": 3848,
+      "sizeKB": 536
+    },
+    {
+      "name": "Office Admin",
+      "slug": "office-admin",
+      "count": 3728,
+      "sizeKB": 515
+    },
+    {
+      "name": "Security Services",
+      "slug": "security-services",
+      "count": 2802,
+      "sizeKB": 389
+    },
+    {
+      "name": "Care Homes",
+      "slug": "care-homes",
+      "count": 2801,
+      "sizeKB": 392
+    },
+    {
+      "name": "Security Systems",
+      "slug": "security-systems",
+      "count": 2748,
+      "sizeKB": 387
+    },
+    {
+      "name": "Facilities Management",
+      "slug": "facilities-management",
+      "count": 2640,
+      "sizeKB": 378
+    },
+    {
+      "name": "Veterinary",
+      "slug": "veterinary",
+      "count": 2604,
+      "sizeKB": 371
+    },
+    {
+      "name": "Food Manufacturing",
+      "slug": "food-manufacturing",
+      "count": 2347,
+      "sizeKB": 321
+    },
+    {
+      "name": "Technical Testing",
+      "slug": "technical-testing",
+      "count": 2255,
+      "sizeKB": 318
+    },
+    {
+      "name": "Nursing Care",
+      "slug": "nursing-care",
+      "count": 2212,
+      "sizeKB": 310
+    },
+    {
+      "name": "Plastics",
+      "slug": "plastics",
+      "count": 2136,
+      "sizeKB": 301
+    },
+    {
+      "name": "Other Care",
+      "slug": "other-care",
+      "count": 2043,
+      "sizeKB": 286
+    },
+    {
+      "name": "Waste Management",
+      "slug": "waste-management",
+      "count": 1986,
+      "sizeKB": 279
+    },
+    {
+      "name": "Warehousing",
+      "slug": "warehousing",
+      "count": 1929,
+      "sizeKB": 269
+    },
+    {
+      "name": "Metal Machining",
+      "slug": "metal-machining",
+      "count": 1736,
+      "sizeKB": 250
+    },
+    {
+      "name": "Social Work",
+      "slug": "social-work",
+      "count": 1708,
+      "sizeKB": 238
+    },
+    {
+      "name": "Bakery",
+      "slug": "bakery",
+      "count": 1369,
+      "sizeKB": 188
+    },
+    {
+      "name": "Computer Repair",
+      "slug": "computer-repair",
+      "count": 1140,
+      "sizeKB": 155
+    },
+    {
+      "name": "Call Centres",
+      "slug": "call-centres",
+      "count": 310,
+      "sizeKB": 43
+    }
+  ],
+  "generated": "2026-04-12"
+}

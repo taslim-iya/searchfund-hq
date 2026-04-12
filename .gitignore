@@ -1,1 +1,6 @@
 .vercel
+
+# Bulk data (too large for GitHub, deployed via Vercel)
+bulk-data/
+public/data/sectors/
+scripts/
