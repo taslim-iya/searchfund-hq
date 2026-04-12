@@ -13,6 +13,8 @@ import MassSourced from '@/pages/MassSourced';
 import Research from '@/pages/Research';
 import Watchlist from '@/pages/Watchlist';
 import CRM from '@/pages/CRM';
+import Qualify from '@/pages/Qualify';
+import Brokers from '@/pages/Brokers';
 import Settings from '@/pages/Settings';
 
 export default function App() {
@@ -33,6 +35,8 @@ export default function App() {
           <Route path="/research" element={<Research />} />
           <Route path="/watchlist" element={<Watchlist />} />
           <Route path="/crm" element={<CRM />} />
+          <Route path="/qualify" element={<Qualify />} />
+          <Route path="/brokers" element={<Brokers />} />
           <Route path="/settings" element={<Settings />} />
         </Route>
       </Routes>
