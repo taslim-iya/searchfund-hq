@@ -129,6 +129,7 @@ export interface WatchlistItem {
 export interface AppConfig {
   companiesHouseKey: string;
   openaiKey: string;
+  apolloKey: string;
   ownerName: string;
   ownerEmail: string;
   fundName: string;
@@ -207,6 +208,7 @@ export const useAppStore = create<AppState>()(
       config: {
         companiesHouseKey: '',
         openaiKey: '',
+        apolloKey: '',
         ownerName: 'Taslim',
         ownerEmail: '',
         fundName: '',

@@ -1,7 +1,7 @@
 import { NavLink, Outlet } from 'react-router-dom';
 import { useState } from 'react';
 import { useAppStore } from '@/store/appStore';
-import { Building2, LayoutDashboard, Users, ListTodo, Briefcase, Sparkles, Send, MessageSquare, Settings, Menu, X, FileText, Star, Database, Microscope, Eye } from 'lucide-react';
+import { Building2, LayoutDashboard, Users, ListTodo, Briefcase, Sparkles, Send, MessageSquare, Settings, Menu, X, FileText, Star, Database, Microscope, Eye, Target } from 'lucide-react';
 
 const NAV = [
   { to: '/', icon: LayoutDashboard, label: 'Dashboard' },
@@ -15,6 +15,7 @@ const NAV = [
   { to: '/sourced', icon: Star, label: 'Sourced (15)', section: 'deals' },
   { to: '/database', icon: Database, label: 'Database (2.4M)', section: 'deals' },
   { to: '/research', icon: Microscope, label: 'Research', section: 'deals' },
+  { to: '/crm', icon: Target, label: 'Deal CRM', section: 'deals' },
   { to: '/watchlist', icon: Eye, label: 'Watchlist', section: 'deals' },
   { to: '/settings', icon: Settings, label: 'Settings' },
 ];

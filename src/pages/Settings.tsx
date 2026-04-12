@@ -29,6 +29,11 @@ export default function Settings() {
               <input value={config.openaiKey} onChange={e => updateConfig({ openaiKey: e.target.value })} type="password" className="input text-[12px]" placeholder="sk-..." />
               <p className="text-[10px] mt-0.5" style={{ color: 'var(--text-tertiary)' }}>For AI enrichment reports and outreach message generation</p>
             </div>
+            <div>
+              <label className="text-[10px] font-medium mb-0.5 block" style={{ color: 'var(--text-tertiary)' }}>Apollo.io API Key</label>
+              <input value={(config as any).apolloKey || ''} onChange={e => updateConfig({ apolloKey: e.target.value } as any)} type="password" className="input text-[12px]" placeholder="Apollo API key..." />
+              <p className="text-[10px] mt-0.5" style={{ color: 'var(--text-tertiary)' }}>For contact enrichment — emails, phone numbers, LinkedIn profiles. Get it from Apollo Settings → Integrations → API Keys</p>
+            </div>
           </div>
         </div>
 
