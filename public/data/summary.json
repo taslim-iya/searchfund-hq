@@ -1,294 +1,553 @@
 {
-  "total": 812370,
+  "total": 2435624,
   "sectors": [
     {
-      "name": "IT & Software",
-      "slug": "it-software",
-      "count": 98274,
-      "sizeKB": 13269
+      "name": "68 \u2014 Real Estate",
+      "slug": "68-real-estate",
+      "count": 303562,
+      "sizeKB": 41740
     },
     {
-      "name": "Business Support",
-      "slug": "business-support",
-      "count": 91453,
-      "sizeKB": 12662
+      "name": "43 \u2014 Specialist Construction",
+      "slug": "43-specialist-construction",
+      "count": 168390,
+      "sizeKB": 23641
     },
     {
-      "name": "Consultancy",
-      "slug": "consultancy",
-      "count": 85286,
-      "sizeKB": 11803
+      "name": "47 \u2014 Retail Trade",
+      "slug": "47-retail-trade",
+      "count": 152345,
+      "sizeKB": 20513
     },
     {
-      "name": "Personal Services",
-      "slug": "personal-services",
-      "count": 62322,
-      "sizeKB": 8591
+      "name": "70 \u2014 Head Offices & Consultancy",
+      "slug": "70-head-offices-consultancy",
+      "count": 144128,
+      "sizeKB": 19894
     },
     {
-      "name": "Electrical & Plumbing",
-      "slug": "electrical-plumbing",
-      "count": 48383,
-      "sizeKB": 6878
+      "name": "62 \u2014 IT & Software",
+      "slug": "62-it-software",
+      "count": 136040,
+      "sizeKB": 18267
     },
     {
-      "name": "Building Completion",
-      "slug": "building-completion",
-      "count": 38007,
-      "sizeKB": 5334
+      "name": "82 \u2014 Office & Business Support",
+      "slug": "82-office-business-support",
+      "count": 118702,
+      "sizeKB": 16383
     },
     {
-      "name": "Estate Agency",
-      "slug": "estate-agency",
-      "count": 33374,
-      "sizeKB": 4716
+      "name": "41 \u2014 Construction of Buildings",
+      "slug": "41-construction-of-buildings",
+      "count": 112680,
+      "sizeKB": 15676
     },
     {
-      "name": "Architecture & Engineering",
-      "slug": "architecture-engineering",
-      "count": 30889,
-      "sizeKB": 4321
+      "name": "96 \u2014 Other Personal Services",
+      "slug": "96-other-personal-services",
+      "count": 98221,
+      "sizeKB": 13456
     },
     {
-      "name": "Accounting & Tax",
-      "slug": "accounting-tax",
-      "count": 28856,
-      "sizeKB": 4019
+      "name": "86 \u2014 Human Health",
+      "slug": "86-human-health",
+      "count": 91257,
+      "sizeKB": 12454
     },
     {
-      "name": "Specialist Construction",
-      "slug": "specialist-construction",
-      "count": 27889,
-      "sizeKB": 3925
+      "name": "64 \u2014 Financial Services",
+      "slug": "64-financial-services",
+      "count": 87288,
+      "sizeKB": 12139
     },
     {
-      "name": "Dental & Medical",
-      "slug": "dental-medical",
-      "count": 26450,
-      "sizeKB": 3643
+      "name": "74 \u2014 Other Professional",
+      "slug": "74-other-professional",
+      "count": 83216,
+      "sizeKB": 11475
     },
     {
-      "name": "Other Health",
-      "slug": "other-health",
-      "count": 25049,
-      "sizeKB": 3447
+      "name": "56 \u2014 Food & Beverage Service",
+      "slug": "56-food-beverage-service",
+      "count": 79840,
+      "sizeKB": 10764
     },
     {
-      "name": "Restaurants & Cafes",
-      "slug": "restaurants-cafes",
-      "count": 24980,
-      "sizeKB": 3379
+      "name": "46 \u2014 Wholesale (excl. Vehicles)",
+      "slug": "46-wholesale-excl.-vehicles",
+      "count": 72178,
+      "sizeKB": 9824
     },
     {
-      "name": "Car Repair",
-      "slug": "car-repair",
-      "count": 19780,
-      "sizeKB": 2779
+      "name": "45 \u2014 Motor Vehicle Trade",
+      "slug": "45-motor-vehicle-trade",
+      "count": 52052,
+      "sizeKB": 7191
     },
     {
-      "name": "Freight & Logistics",
-      "slug": "freight-logistics",
-      "count": 18151,
-      "sizeKB": 2467
+      "name": "69 \u2014 Legal & Accounting",
+      "slug": "69-legal-accounting",
+      "count": 50112,
+      "sizeKB": 6935
     },
     {
-      "name": "Sports & Fitness",
-      "slug": "sports-fitness",
-      "count": 13155,
-      "sizeKB": 1833
+      "name": "71 \u2014 Architecture & Engineering",
+      "slug": "71-architecture-engineering",
+      "count": 48628,
+      "sizeKB": 6765
     },
     {
-      "name": "Education & Training",
-      "slug": "education-training",
-      "count": 12459,
-      "sizeKB": 1740
+      "name": "49 \u2014 Land Transport",
+      "slug": "49-land-transport",
+      "count": 42133,
+      "sizeKB": 5673
     },
     {
-      "name": "Design Services",
-      "slug": "design-services",
-      "count": 12128,
-      "sizeKB": 1651
+      "name": "59 \u2014 Film & TV Production",
+      "slug": "59-film-tv-production",
+      "count": 39250,
+      "sizeKB": 5274
     },
     {
-      "name": "Advertising",
-      "slug": "advertising",
-      "count": 10807,
-      "sizeKB": 1467
+      "name": "85 \u2014 Education",
+      "slug": "85-education",
+      "count": 38630,
+      "sizeKB": 5373
     },
     {
-      "name": "IT Retail",
-      "slug": "it-retail",
-      "count": 9045,
-      "sizeKB": 1261
+      "name": "98 \u2014 Undifferentiated Goods/Services",
+      "slug": "98-undifferentiated-goods-services",
+      "count": 33902,
+      "sizeKB": 4996
     },
     {
-      "name": "Cleaning & Pest Control",
-      "slug": "cleaning-pest-control",
-      "count": 8880,
-      "sizeKB": 1249
+      "name": "81 \u2014 Services to Buildings",
+      "slug": "81-services-to-buildings",
+      "count": 29133,
+      "sizeKB": 4092
     },
     {
-      "name": "Catering",
-      "slug": "catering",
-      "count": 8559,
-      "sizeKB": 1171
+      "name": "93 \u2014 Sports & Recreation",
+      "slug": "93-sports-recreation",
+      "count": 28500,
+      "sizeKB": 3942
     },
     {
-      "name": "Recruitment",
-      "slug": "recruitment",
-      "count": 8405,
-      "sizeKB": 1168
+      "name": "90 \u2014 Creative Arts",
+      "slug": "90-creative-arts",
+      "count": 24774,
+      "sizeKB": 3353
     },
     {
-      "name": "Landscaping",
-      "slug": "landscaping",
-      "count": 6437,
-      "sizeKB": 916
+      "name": "78 \u2014 Employment Activities",
+      "slug": "78-employment-activities",
+      "count": 23826,
+      "sizeKB": 3287
     },
     {
-      "name": "Travel Agency",
-      "slug": "travel-agency",
-      "count": 4857,
-      "sizeKB": 665
+      "name": "55 \u2014 Accommodation",
+      "slug": "55-accommodation",
+      "count": 23155,
+      "sizeKB": 3212
     },
     {
-      "name": "Printing",
-      "slug": "printing",
-      "count": 4258,
-      "sizeKB": 591
+      "name": "73 \u2014 Advertising & Market Research",
+      "slug": "73-advertising-market-research",
+      "count": 18911,
+      "sizeKB": 2554
     },
     {
-      "name": "Data Processing",
-      "slug": "data-processing",
-      "count": 4027,
-      "sizeKB": 538
+      "name": "33 \u2014 Repair & Installation",
+      "slug": "33-repair-installation",
+      "count": 18895,
+      "sizeKB": 2654
     },
     {
-      "name": "Metal Fabrication",
-      "slug": "metal-fabrication",
-      "count": 3952,
-      "sizeKB": 564
+      "name": "58 \u2014 Publishing",
+      "slug": "58-publishing",
+      "count": 18086,
+      "sizeKB": 2439
     },
     {
-      "name": "Nurseries & Childcare",
-      "slug": "nurseries-childcare",
-      "count": 3916,
-      "sizeKB": 561
+      "name": "01 \u2014 Agriculture",
+      "slug": "01-agriculture",
+      "count": 17763,
+      "sizeKB": 2481
     },
     {
-      "name": "Temp Staffing",
-      "slug": "temp-staffing",
-      "count": 3848,
-      "sizeKB": 536
+      "name": "42 \u2014 Civil Engineering",
+      "slug": "42-civil-engineering",
+      "count": 15717,
+      "sizeKB": 2188
     },
     {
-      "name": "Office Admin",
-      "slug": "office-admin",
-      "count": 3728,
-      "sizeKB": 515
+      "name": "63 \u2014 Information Services",
+      "slug": "63-information-services",
+      "count": 15376,
+      "sizeKB": 2076
     },
     {
-      "name": "Security Services",
-      "slug": "security-services",
-      "count": 2802,
-      "sizeKB": 389
+      "name": "32 \u2014 Other Manufacturing",
+      "slug": "32-other-manufacturing",
+      "count": 15058,
+      "sizeKB": 2079
     },
     {
-      "name": "Care Homes",
-      "slug": "care-homes",
-      "count": 2801,
-      "sizeKB": 392
+      "name": "66 \u2014 Financial Auxiliaries",
+      "slug": "66-financial-auxiliaries",
+      "count": 14677,
+      "sizeKB": 2059
     },
     {
-      "name": "Security Systems",
-      "slug": "security-systems",
-      "count": 2748,
-      "sizeKB": 387
+      "name": "87 \u2014 Residential Care",
+      "slug": "87-residential-care",
+      "count": 13787,
+      "sizeKB": 1907
     },
     {
-      "name": "Facilities Management",
-      "slug": "facilities-management",
-      "count": 2640,
-      "sizeKB": 378
+      "name": "52 \u2014 Warehousing & Transport Support",
+      "slug": "52-warehousing-transport-support",
+      "count": 12116,
+      "sizeKB": 1664
     },
     {
-      "name": "Veterinary",
-      "slug": "veterinary",
-      "count": 2604,
-      "sizeKB": 371
+      "name": "25 \u2014 Fabricated Metal",
+      "slug": "25-fabricated-metal",
+      "count": 11998,
+      "sizeKB": 1702
     },
     {
-      "name": "Food Manufacturing",
-      "slug": "food-manufacturing",
-      "count": 2347,
-      "sizeKB": 321
+      "name": "77 \u2014 Rental & Leasing",
+      "slug": "77-rental-leasing",
+      "count": 11361,
+      "sizeKB": 1570
     },
     {
-      "name": "Technical Testing",
-      "slug": "technical-testing",
-      "count": 2255,
-      "sizeKB": 318
+      "name": "35 \u2014 Electricity & Gas",
+      "slug": "35-electricity-gas",
+      "count": 10571,
+      "sizeKB": 1466
     },
     {
-      "name": "Nursing Care",
-      "slug": "nursing-care",
-      "count": 2212,
-      "sizeKB": 310
+      "name": "10 \u2014 Food Manufacturing",
+      "slug": "10-food-manufacturing",
+      "count": 9837,
+      "sizeKB": 1339
     },
     {
-      "name": "Plastics",
-      "slug": "plastics",
-      "count": 2136,
-      "sizeKB": 301
+      "name": "88 \u2014 Social Work",
+      "slug": "88-social-work",
+      "count": 9692,
+      "sizeKB": 1352
     },
     {
-      "name": "Other Care",
-      "slug": "other-care",
-      "count": 2043,
-      "sizeKB": 286
+      "name": "61 \u2014 Telecommunications",
+      "slug": "61-telecommunications",
+      "count": 9661,
+      "sizeKB": 1319
     },
     {
-      "name": "Waste Management",
-      "slug": "waste-management",
-      "count": 1986,
-      "sizeKB": 279
+      "name": "80 \u2014 Security & Investigation",
+      "slug": "80-security-investigation",
+      "count": 9356,
+      "sizeKB": 1299
     },
     {
-      "name": "Warehousing",
-      "slug": "warehousing",
-      "count": 1929,
-      "sizeKB": 269
+      "name": "79 \u2014 Travel & Tourism",
+      "slug": "79-travel-tourism",
+      "count": 8795,
+      "sizeKB": 1199
     },
     {
-      "name": "Metal Machining",
-      "slug": "metal-machining",
-      "count": 1736,
-      "sizeKB": 250
+      "name": "18 \u2014 Printing",
+      "slug": "18-printing",
+      "count": 6902,
+      "sizeKB": 947
     },
     {
-      "name": "Social Work",
-      "slug": "social-work",
-      "count": 1708,
-      "sizeKB": 238
+      "name": "16 \u2014 Wood Products",
+      "slug": "16-wood-products",
+      "count": 5703,
+      "sizeKB": 794
     },
     {
-      "name": "Bakery",
-      "slug": "bakery",
-      "count": 1369,
-      "sizeKB": 188
+      "name": "72 \u2014 Scientific R&D",
+      "slug": "72-scientific-r&d",
+      "count": 5498,
+      "sizeKB": 751
     },
     {
-      "name": "Computer Repair",
-      "slug": "computer-repair",
-      "count": 1140,
-      "sizeKB": 155
+      "name": "38 \u2014 Waste Management",
+      "slug": "38-waste-management",
+      "count": 5393,
+      "sizeKB": 754
     },
     {
-      "name": "Call Centres",
-      "slug": "call-centres",
-      "count": 310,
-      "sizeKB": 43
+      "name": "31 \u2014 Furniture",
+      "slug": "31-furniture",
+      "count": 5286,
+      "sizeKB": 733
+    },
+    {
+      "name": "53 \u2014 Postal & Courier",
+      "slug": "53-postal-courier",
+      "count": 5211,
+      "sizeKB": 696
+    },
+    {
+      "name": "28 \u2014 Machinery",
+      "slug": "28-machinery",
+      "count": 4931,
+      "sizeKB": 696
+    },
+    {
+      "name": "26 \u2014 Electronics",
+      "slug": "26-electronics",
+      "count": 4126,
+      "sizeKB": 567
+    },
+    {
+      "name": "65 \u2014 Insurance",
+      "slug": "65-insurance",
+      "count": 3968,
+      "sizeKB": 556
+    },
+    {
+      "name": "84 \u2014 Public Administration",
+      "slug": "84-public-administration",
+      "count": 3655,
+      "sizeKB": 503
+    },
+    {
+      "name": "14 \u2014 Wearing Apparel",
+      "slug": "14-wearing-apparel",
+      "count": 3622,
+      "sizeKB": 483
+    },
+    {
+      "name": "95 \u2014 Repair of Goods",
+      "slug": "95-repair-of-goods",
+      "count": 3524,
+      "sizeKB": 484
+    },
+    {
+      "name": "75 \u2014 Veterinary",
+      "slug": "75-veterinary",
+      "count": 3513,
+      "sizeKB": 497
+    },
+    {
+      "name": "13 \u2014 Textiles",
+      "slug": "13-textiles",
+      "count": 3425,
+      "sizeKB": 470
+    },
+    {
+      "name": "11 \u2014 Beverages",
+      "slug": "11-beverages",
+      "count": 3292,
+      "sizeKB": 457
+    },
+    {
+      "name": "02 \u2014 Forestry",
+      "slug": "02-forestry",
+      "count": 3264,
+      "sizeKB": 458
+    },
+    {
+      "name": "22 \u2014 Rubber & Plastics",
+      "slug": "22-rubber-plastics",
+      "count": 3140,
+      "sizeKB": 440
+    },
+    {
+      "name": "27 \u2014 Electrical Equipment",
+      "slug": "27-electrical-equipment",
+      "count": 3114,
+      "sizeKB": 432
+    },
+    {
+      "name": "20 \u2014 Chemicals",
+      "slug": "20-chemicals",
+      "count": 2827,
+      "sizeKB": 388
+    },
+    {
+      "name": "94 \u2014 Membership Organisations",
+      "slug": "94-membership-organisations",
+      "count": 2742,
+      "sizeKB": 374
+    },
+    {
+      "name": "23 \u2014 Non-Metallic Minerals",
+      "slug": "23-non-metallic-minerals",
+      "count": 2612,
+      "sizeKB": 364
+    },
+    {
+      "name": "03 \u2014 Fishing",
+      "slug": "03-fishing",
+      "count": 2445,
+      "sizeKB": 338
+    },
+    {
+      "name": "60 \u2014 Broadcasting",
+      "slug": "60-broadcasting",
+      "count": 2441,
+      "sizeKB": 330
+    },
+    {
+      "name": "09 \u2014 Mining Support",
+      "slug": "09-mining-support",
+      "count": 2435,
+      "sizeKB": 338
+    },
+    {
+      "name": "29 \u2014 Motor Vehicles",
+      "slug": "29-motor-vehicles",
+      "count": 2381,
+      "sizeKB": 332
+    },
+    {
+      "name": "50 \u2014 Water Transport",
+      "slug": "50-water-transport",
+      "count": 1961,
+      "sizeKB": 271
+    },
+    {
+      "name": "30 \u2014 Other Transport Equipment",
+      "slug": "30-other-transport-equipment",
+      "count": 1703,
+      "sizeKB": 237
+    },
+    {
+      "name": "51 \u2014 Air Transport",
+      "slug": "51-air-transport",
+      "count": 1650,
+      "sizeKB": 227
+    },
+    {
+      "name": "39 \u2014 Remediation",
+      "slug": "39-remediation",
+      "count": 1649,
+      "sizeKB": 232
+    },
+    {
+      "name": "17 \u2014 Paper Products",
+      "slug": "17-paper-products",
+      "count": 1339,
+      "sizeKB": 185
+    },
+    {
+      "name": "24 \u2014 Basic Metals",
+      "slug": "24-basic-metals",
+      "count": 1290,
+      "sizeKB": 182
+    },
+    {
+      "name": "06 \u2014 Oil & Gas",
+      "slug": "06-oil-gas",
+      "count": 911,
+      "sizeKB": 126
+    },
+    {
+      "name": "36 \u2014 Water Collection",
+      "slug": "36-water-collection",
+      "count": 880,
+      "sizeKB": 124
+    },
+    {
+      "name": "08 \u2014 Other Mining",
+      "slug": "08-other-mining",
+      "count": 871,
+      "sizeKB": 122
+    },
+    {
+      "name": "21 \u2014 Pharmaceuticals",
+      "slug": "21-pharmaceuticals",
+      "count": 829,
+      "sizeKB": 114
+    },
+    {
+      "name": "37 \u2014 Sewerage",
+      "slug": "37-sewerage",
+      "count": 670,
+      "sizeKB": 95
+    },
+    {
+      "name": "15 \u2014 Leather",
+      "slug": "15-leather",
+      "count": 665,
+      "sizeKB": 90
+    },
+    {
+      "name": "92 \u2014 Gambling",
+      "slug": "92-gambling",
+      "count": 599,
+      "sizeKB": 83
+    },
+    {
+      "name": "91 \u2014 Libraries & Museums",
+      "slug": "91-libraries-museums",
+      "count": 586,
+      "sizeKB": 83
+    },
+    {
+      "name": "97 \u2014 Households as Employers",
+      "slug": "97-households-as-employers",
+      "count": 362,
+      "sizeKB": 50
+    },
+    {
+      "name": "99 \u2014 Extraterritorial",
+      "slug": "99-extraterritorial",
+      "count": 215,
+      "sizeKB": 30
+    },
+    {
+      "name": "07 \u2014 Mining Metal",
+      "slug": "07-mining-metal",
+      "count": 177,
+      "sizeKB": 24
+    },
+    {
+      "name": "19 \u2014 Coke & Petroleum",
+      "slug": "19-coke-petroleum",
+      "count": 122,
+      "sizeKB": 17
+    },
+    {
+      "name": "12 \u2014 Tobacco",
+      "slug": "12-tobacco",
+      "count": 48,
+      "sizeKB": 7
+    },
+    {
+      "name": "05 \u2014 Mining Coal",
+      "slug": "05-mining-coal",
+      "count": 40,
+      "sizeKB": 6
+    },
+    {
+      "name": "34 \u2014 Division 34",
+      "slug": "34-division-34",
+      "count": 6,
+      "sizeKB": 1
+    },
+    {
+      "name": "67 \u2014 Division 67",
+      "slug": "67-division-67",
+      "count": 1,
+      "sizeKB": 0
+    },
+    {
+      "name": "40 \u2014 Division 40",
+      "slug": "40-division-40",
+      "count": 1,
+      "sizeKB": 0
     }
   ],
-  "generated": "2026-04-12"
+  "generated": "2026-04-12",
+  "source": "Companies House Bulk Data Product (2026-04-01)"
 }

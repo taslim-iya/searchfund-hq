@@ -13,7 +13,7 @@ const NAV = [
   { to: '/outreach', icon: Send, label: 'Outreach', section: 'deals' },
   { to: '/reports', icon: FileText, label: 'Reports', section: 'deals' },
   { to: '/sourced', icon: Star, label: 'Sourced (15)', section: 'deals' },
-  { to: '/database', icon: Database, label: 'Database (812K)', section: 'deals' },
+  { to: '/database', icon: Database, label: 'Database (2.4M)', section: 'deals' },
   { to: '/settings', icon: Settings, label: 'Settings' },
 ];
 
