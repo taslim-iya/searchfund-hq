@@ -1,7 +1,7 @@
 import { NavLink, Outlet } from 'react-router-dom';
 import { useState } from 'react';
 import { useAppStore } from '@/store/appStore';
-import { Building2, LayoutDashboard, Users, ListTodo, Briefcase, Sparkles, Send, MessageSquare, Settings, Menu, X, FileText } from 'lucide-react';
+import { Building2, LayoutDashboard, Users, ListTodo, Briefcase, Sparkles, Send, MessageSquare, Settings, Menu, X, FileText, Star } from 'lucide-react';
 
 const NAV = [
   { to: '/', icon: LayoutDashboard, label: 'Dashboard' },
@@ -12,6 +12,7 @@ const NAV = [
   { to: '/enrich', icon: Sparkles, label: 'Enrich', section: 'deals' },
   { to: '/outreach', icon: Send, label: 'Outreach', section: 'deals' },
   { to: '/reports', icon: FileText, label: 'Reports', section: 'deals' },
+  { to: '/sourced', icon: Star, label: 'Sourced', section: 'deals' },
   { to: '/settings', icon: Settings, label: 'Settings' },
 ];
 

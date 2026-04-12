@@ -8,6 +8,7 @@ import Companies from '@/pages/Companies';
 import Enrich from '@/pages/Enrich';
 import Outreach from '@/pages/Outreach';
 import Reports from '@/pages/Reports';
+import Sourced from '@/pages/Sourced';
 import Settings from '@/pages/Settings';
 
 export default function App() {
@@ -23,6 +24,7 @@ export default function App() {
           <Route path="/enrich" element={<Enrich />} />
           <Route path="/outreach" element={<Outreach />} />
           <Route path="/reports" element={<Reports />} />
+          <Route path="/sourced" element={<Sourced />} />
           <Route path="/settings" element={<Settings />} />
         </Route>
       </Routes>
