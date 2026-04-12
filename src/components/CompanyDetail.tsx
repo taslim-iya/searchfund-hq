@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Building2, User, Calendar, MapPin, FileText, ExternalLink, Globe, Loader2, X, TrendingUp, DollarSign, Shield, AlertTriangle } from 'lucide-react';
+import { Building2, User, Calendar, MapPin, FileText, ExternalLink, Globe, Loader2, X, TrendingUp, DollarSign, Shield, AlertTriangle, Eye, EyeOff, Bell } from 'lucide-react';
 import { useAppStore } from '@/store/appStore';
 
 interface Props {
@@ -52,7 +52,8 @@ interface PSC {
 const API_BASE = 'https://api.company-information.service.gov.uk';
 
 export default function CompanyDetail({ companyNumber, companyName, onClose }: Props) {
-  const { config } = useAppStore();
+  const { config, watchlist, addToWatchlist, removeFromWatchlist } = useAppStore();
+  const isWatched = watchlist.some(w => w.companyNumber === companyNumber);
   const [profile, setProfile] = useState<Profile | null>(null);
   const [officers, setOfficers] = useState<Officer[]>([]);
   const [filings, setFilings] = useState<Filing[]>([]);
@@ -105,6 +106,12 @@ export default function CompanyDetail({ companyNumber, companyName, onClose }: P
               <p className="text-[11px] mono" style={{ color: 'var(--text-tertiary)' }}>{companyNumber}</p>
             </div>
             <div className="flex items-center gap-2">
+              <button onClick={() => isWatched
+                ? removeFromWatchlist(companyNumber)
+                : addToWatchlist({ companyNumber, companyName, addedAt: new Date().toISOString(), lastChecked: '', lastChanges: 0, notes: '' })
+              } className={`text-[10px] py-1 ${isWatched ? 'btn-primary' : 'btn-secondary'}`}>
+                {isWatched ? <><EyeOff size={10} /> Watching</> : <><Eye size={10} /> Watch</>}
+              </button>
               <a href={chUrl} target="_blank" className="btn-secondary text-[10px] py-1"><ExternalLink size={10} /> Companies House</a>
               <button onClick={onClose}><X size={16} style={{ color: 'var(--text-tertiary)' }} /></button>
             </div>

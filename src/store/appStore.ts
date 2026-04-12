@@ -117,6 +117,15 @@ export interface ActivityItem {
   type: 'info' | 'success' | 'warning' | 'error';
 }
 
+export interface WatchlistItem {
+  companyNumber: string;
+  companyName: string;
+  addedAt: string;
+  lastChecked: string;
+  lastChanges: number;
+  notes: string;
+}
+
 export interface AppConfig {
   companiesHouseKey: string;
   openaiKey: string;
@@ -134,6 +143,12 @@ interface AppState {
   messages: Message[];
   activity: ActivityItem[];
   config: AppConfig;
+  watchlist: WatchlistItem[];
+
+  // Watchlist
+  addToWatchlist: (item: WatchlistItem) => void;
+  removeFromWatchlist: (companyNumber: string) => void;
+  updateWatchlistItem: (companyNumber: string, patch: Partial<WatchlistItem>) => void;
 
   // Interns
   addIntern: (i: Intern) => void;
@@ -188,6 +203,7 @@ export const useAppStore = create<AppState>()(
       companies: [],
       messages: [],
       activity: [],
+      watchlist: [],
       config: {
         companiesHouseKey: '',
         openaiKey: '',
@@ -197,6 +213,10 @@ export const useAppStore = create<AppState>()(
         emailSignature: '',
         outreachTemplate: `Hi {ownerName},\n\nI came across {companyName} and was impressed by {strength}.\n\nWe're a search fund focused on acquiring and operating great SMEs in {sector}. I'd love to learn more about your business and explore whether there might be a fit.\n\nWould you be open to a 15-minute introductory call?\n\nBest regards,\n{senderName}`,
       },
+
+      addToWatchlist: (item) => set((s) => ({ watchlist: [...s.watchlist.filter(w => w.companyNumber !== item.companyNumber), item] })),
+      removeFromWatchlist: (num) => set((s) => ({ watchlist: s.watchlist.filter(w => w.companyNumber !== num) })),
+      updateWatchlistItem: (num, patch) => set((s) => ({ watchlist: s.watchlist.map(w => w.companyNumber === num ? { ...w, ...patch } : w) })),
 
       addIntern: (i) => set((s) => ({ interns: [...s.interns, i] })),
       updateIntern: (id, patch) => set((s) => ({ interns: s.interns.map(i => i.id === id ? { ...i, ...patch } : i) })),

@@ -11,6 +11,7 @@ import Reports from '@/pages/Reports';
 import Sourced from '@/pages/Sourced';
 import MassSourced from '@/pages/MassSourced';
 import Research from '@/pages/Research';
+import Watchlist from '@/pages/Watchlist';
 import Settings from '@/pages/Settings';
 
 export default function App() {
@@ -29,6 +30,7 @@ export default function App() {
           <Route path="/sourced" element={<Sourced />} />
           <Route path="/database" element={<MassSourced />} />
           <Route path="/research" element={<Research />} />
+          <Route path="/watchlist" element={<Watchlist />} />
           <Route path="/settings" element={<Settings />} />
         </Route>
       </Routes>
