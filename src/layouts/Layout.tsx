@@ -21,6 +21,7 @@ const NAV: NavItem[] = [
   { to: '/sourced', icon: Star, label: 'Sourced', section: 'deals' },
   { to: '/database', icon: Database, label: 'Database', section: 'deals' },
   { to: '/research', icon: Microscope, label: 'Research', section: 'deals' },
+  { to: '/ai-search', icon: Sparkles, label: 'AI Search', section: 'deals' },
   { to: '/crm', icon: Target, label: 'Deal CRM', section: 'deals' },
   { to: '/qualify', icon: Filter, label: 'Qualify', section: 'deals' },
   { to: '/brokers', icon: Handshake, label: 'Brokers', section: 'deals' },

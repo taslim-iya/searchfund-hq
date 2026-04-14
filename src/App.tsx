@@ -15,6 +15,7 @@ import Watchlist from '@/pages/Watchlist';
 import CRM from '@/pages/CRM';
 import Qualify from '@/pages/Qualify';
 import Brokers from '@/pages/Brokers';
+import AISearch from '@/pages/AISearch';
 import Settings from '@/pages/Settings';
 
 export default function App() {
@@ -33,6 +34,7 @@ export default function App() {
           <Route path="/sourced" element={<Sourced />} />
           <Route path="/database" element={<MassSourced />} />
           <Route path="/research" element={<Research />} />
+          <Route path="/ai-search" element={<AISearch />} />
           <Route path="/watchlist" element={<Watchlist />} />
           <Route path="/crm" element={<CRM />} />
           <Route path="/qualify" element={<Qualify />} />
