@@ -1,10 +1,10 @@
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAppStore } from '@/store/appStore';
 import {
   Building2, LayoutDashboard, Users, ListTodo, Briefcase, Sparkles, Send,
   MessageSquare, Settings, Menu, X, FileText, Star, Database, Microscope,
-  Eye, Target, Filter, Handshake, Search, ChevronDown,
+  Eye, Target, Filter, Handshake, Search, Sun, Moon,
 } from 'lucide-react';
 
 type NavItem = { to: string; icon: typeof LayoutDashboard; label: string; section?: string };
@@ -30,12 +30,13 @@ const NAV: NavItem[] = [
 ];
 
 const navLinkClass = ({ isActive }: { isActive: boolean }) =>
-  `group flex items-center gap-2.5 px-3 py-[7px] rounded-[8px] text-[13px] font-medium transition-colors ${
-    isActive ? 'bg-white shadow-[0_1px_2px_rgba(10,37,64,0.06),0_0_0_1px_rgba(10,37,64,0.06)]' : 'hover:bg-white/60'
+  `group flex items-center gap-2.5 px-3 py-[7px] text-[13px] font-medium transition-colors border-l-2 ${
+    isActive ? 'border-l-[var(--accent)]' : 'border-l-transparent hover:border-l-[var(--border)]'
   }`;
 
 const navLinkStyle = ({ isActive }: { isActive: boolean }) => ({
-  color: isActive ? 'var(--text-primary)' : 'var(--text-secondary)',
+  color: isActive ? 'var(--text-primary)' : 'var(--text-tertiary)',
+  fontWeight: isActive ? 700 : 500,
 });
 
 export default function Layout() {
@@ -43,67 +44,51 @@ export default function Layout() {
   const { messages } = useAppStore();
   const location = useLocation();
   const unread = messages.filter(m => !m.read && m.to === 'owner').length;
-
   const current = NAV.find(n => n.to === location.pathname) ?? NAV[0];
 
+  const [dark, setDark] = useState(() => {
+    const stored = localStorage.getItem('sfhq-theme');
+    if (stored) return stored === 'dark';
+    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+  });
+
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', dark);
+    localStorage.setItem('sfhq-theme', dark ? 'dark' : 'light');
+  }, [dark]);
+
   return (
-    <div className="flex min-h-dvh" style={{ background: 'var(--bg-alt)' }}>
+    <div className="flex min-h-dvh" style={{ background: 'var(--bg)' }}>
       {/* Sidebar */}
       <aside
-        className="hidden md:flex flex-col w-60 flex-shrink-0 sticky top-0 h-dvh border-r"
-        style={{ borderColor: 'var(--border)', background: 'var(--bg-alt)' }}
+        className="hidden md:flex flex-col w-56 flex-shrink-0 sticky top-0 h-dvh border-r"
+        style={{ borderColor: 'var(--border)', background: 'var(--bg)' }}
       >
         {/* Brand */}
-        <div className="px-5 pt-5 pb-4">
+        <div className="px-5 pt-5 pb-4 border-b" style={{ borderColor: 'var(--border)' }}>
           <div className="flex items-center gap-2.5">
-            <div
-              className="w-8 h-8 rounded-[10px] flex items-center justify-center"
-              style={{ background: 'var(--gradient-accent)', boxShadow: '0 4px 14px rgba(99,91,255,0.35)' }}
-            >
-              <Building2 size={16} color="#fff" strokeWidth={2.4} />
-            </div>
-            <div className="flex flex-col leading-tight">
-              <span className="text-[14px] font-bold tracking-tight" style={{ color: 'var(--text-primary)' }}>
-                SearchFund HQ
-              </span>
-              <span className="text-[10px] font-medium" style={{ color: 'var(--text-tertiary)' }}>
-                Deal sourcing workspace
-              </span>
-            </div>
+            <span className="font-headline text-[22px] font-bold" style={{ color: 'var(--text-primary)', letterSpacing: '-0.02em' }}>
+              SFH
+            </span>
+            <span style={{ width: 1, height: 20, background: 'var(--border)' }} />
+            <span className="meta-label">SearchFund HQ</span>
           </div>
         </div>
 
-        {/* Workspace switcher */}
-        <div className="px-4 pb-3">
-          <button
-            className="w-full flex items-center justify-between gap-2 px-2.5 py-1.5 rounded-[8px] border text-[12px] font-semibold"
-            style={{ borderColor: 'var(--border)', background: '#fff', color: 'var(--text-primary)' }}
-          >
-            <span className="flex items-center gap-2 min-w-0">
-              <span className="w-5 h-5 rounded-[6px] flex items-center justify-center text-[10px] font-bold text-white"
-                style={{ background: 'linear-gradient(180deg,#635bff,#4b44c1)' }}>S</span>
-              <span className="truncate">Search Fund I</span>
-            </span>
-            <ChevronDown size={13} style={{ color: 'var(--text-tertiary)' }} />
-          </button>
-        </div>
-
         {/* Search */}
-        <div className="px-4 pb-3">
-          <div className="flex items-center gap-2 px-2.5 py-1.5 rounded-[8px] border text-[12px]"
-            style={{ borderColor: 'var(--border)', background: '#fff' }}>
+        <div className="px-4 py-3 border-b" style={{ borderColor: 'var(--border)' }}>
+          <div className="flex items-center gap-2 px-2.5 py-2 border text-[12px]"
+            style={{ borderColor: 'var(--border)', background: 'var(--surface)' }}>
             <Search size={13} style={{ color: 'var(--text-tertiary)' }} />
             <input
               placeholder="Search…"
               className="flex-1 bg-transparent outline-none"
-              style={{ color: 'var(--text-primary)' }}
+              style={{ color: 'var(--text-primary)', fontSize: 12, fontFamily: 'var(--font)' }}
             />
-            <kbd className="hidden lg:inline-block text-[9px] font-semibold px-1 py-0.5 rounded"
-              style={{ background: 'var(--bg-alt)', color: 'var(--text-tertiary)', border: '1px solid var(--border)' }}>⌘K</kbd>
           </div>
         </div>
 
-        <nav className="flex-1 px-3 pb-4 space-y-5 overflow-y-auto">
+        <nav className="flex-1 px-3 pb-4 pt-3 space-y-4 overflow-y-auto">
           <div className="space-y-0.5">
             <NavLink to="/" end className={navLinkClass} style={navLinkStyle}>
               <LayoutDashboard size={15} /> Dashboard
@@ -111,14 +96,13 @@ export default function Layout() {
           </div>
 
           <div className="space-y-0.5">
-            <p className="px-3 text-[10px] font-semibold uppercase tracking-[0.08em] mb-1"
-              style={{ color: 'var(--text-tertiary)' }}>Team</p>
+            <p className="meta-label px-3 mb-1" style={{ fontSize: 10 }}>Team</p>
             {NAV.filter(n => n.section === 'team').map(n => (
               <NavLink key={n.to} to={n.to} className={navLinkClass} style={navLinkStyle}>
                 <n.icon size={15} />
                 <span className="flex-1">{n.label}</span>
                 {n.to === '/messages' && unread > 0 && (
-                  <span className="ml-auto min-w-[18px] h-[18px] px-1 rounded-full text-white text-[10px] font-bold flex items-center justify-center tabular"
+                  <span className="ml-auto min-w-[18px] h-[18px] px-1 text-white text-[10px] font-bold flex items-center justify-center"
                     style={{ background: 'var(--danger)' }}>{unread}</span>
                 )}
               </NavLink>
@@ -126,8 +110,7 @@ export default function Layout() {
           </div>
 
           <div className="space-y-0.5">
-            <p className="px-3 text-[10px] font-semibold uppercase tracking-[0.08em] mb-1"
-              style={{ color: 'var(--text-tertiary)' }}>Deal flow</p>
+            <p className="meta-label px-3 mb-1" style={{ fontSize: 10 }}>Deal Flow</p>
             {NAV.filter(n => n.section === 'deals').map(n => (
               <NavLink key={n.to} to={n.to} className={navLinkClass} style={navLinkStyle}>
                 <n.icon size={15} />
@@ -141,11 +124,18 @@ export default function Layout() {
           <NavLink to="/settings" className={navLinkClass} style={navLinkStyle}>
             <Settings size={15} /> Settings
           </NavLink>
-          <div className="mt-3 px-3 py-3 rounded-[10px] border"
-            style={{ borderColor: 'var(--border)', background: '#fff' }}>
+
+          {/* Theme toggle */}
+          <button onClick={() => setDark(!dark)} className="theme-toggle w-full mt-2 justify-center">
+            {dark ? <Sun size={13} /> : <Moon size={13} />}
+            {dark ? 'Light Mode' : 'Dark Mode'}
+          </button>
+
+          {/* User */}
+          <div className="mt-3 px-3 py-3 border" style={{ borderColor: 'var(--border)' }}>
             <div className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded-full flex items-center justify-center text-[11px] font-bold text-white"
-                style={{ background: 'linear-gradient(135deg,#635bff,#22d3ee)' }}>TI</div>
+              <div className="w-7 h-7 flex items-center justify-center text-[11px] font-bold"
+                style={{ background: 'var(--accent)', color: 'var(--text-inverse)' }}>TA</div>
               <div className="flex-1 min-w-0">
                 <p className="text-[12px] font-semibold truncate" style={{ color: 'var(--text-primary)' }}>Taslim</p>
                 <p className="text-[10px] truncate" style={{ color: 'var(--text-tertiary)' }}>Principal</p>
@@ -163,15 +153,17 @@ export default function Layout() {
           style={{ borderColor: 'var(--border)', background: 'var(--bg)' }}
         >
           <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-[8px] flex items-center justify-center"
-              style={{ background: 'var(--gradient-accent)' }}>
-              <Building2 size={14} color="#fff" strokeWidth={2.4} />
-            </div>
-            <span className="text-[14px] font-bold tracking-tight">SearchFund HQ</span>
+            <span className="font-headline text-[18px] font-bold" style={{ color: 'var(--text-primary)' }}>SFH</span>
+            <span className="meta-label">SearchFund HQ</span>
           </div>
-          <button onClick={() => setOpen(!open)} className="p-1">
-            {open ? <X size={20} /> : <Menu size={20} />}
-          </button>
+          <div className="flex items-center gap-2">
+            <button onClick={() => setDark(!dark)} className="p-1" style={{ color: 'var(--text-tertiary)' }}>
+              {dark ? <Sun size={18} /> : <Moon size={18} />}
+            </button>
+            <button onClick={() => setOpen(!open)} className="p-1" style={{ color: 'var(--text-primary)' }}>
+              {open ? <X size={20} /> : <Menu size={20} />}
+            </button>
+          </div>
         </header>
 
         {open && (
@@ -181,10 +173,10 @@ export default function Layout() {
                 <NavLink
                   key={n.to} to={n.to} end={n.to === '/'}
                   onClick={() => setOpen(false)}
-                  className="flex items-center gap-3 px-4 py-3 rounded-[10px] text-[14px] font-medium"
+                  className="flex items-center gap-3 px-4 py-3 text-[14px] font-medium border-l-2"
                   style={({ isActive }) => ({
-                    background: isActive ? 'var(--accent-light)' : 'transparent',
-                    color: isActive ? 'var(--accent)' : 'var(--text-secondary)',
+                    borderColor: isActive ? 'var(--accent)' : 'transparent',
+                    color: isActive ? 'var(--text-primary)' : 'var(--text-tertiary)',
                   })}
                 >
                   <n.icon size={18} /> {n.label}
@@ -194,34 +186,26 @@ export default function Layout() {
           </div>
         )}
 
-        {/* Desktop topbar — slim sticky breadcrumb bar with hero gradient wash behind page header */}
-        <div className="hidden md:block relative">
-          <div
-            className="absolute inset-x-0 top-0 h-[260px] pointer-events-none -z-0"
-            style={{ background: 'var(--gradient-hero)' }}
-          />
+        {/* Desktop topbar */}
+        <div className="hidden md:block">
           <header
-            className="relative z-10 sticky top-0 px-8 h-12 flex items-center justify-between border-b backdrop-blur"
-            style={{ borderColor: 'rgba(227,232,238,0.6)', background: 'rgba(255,255,255,0.65)' }}
+            className="sticky top-0 px-8 h-11 flex items-center justify-between border-b z-10"
+            style={{ borderColor: 'var(--border)', background: 'var(--bg)' }}
           >
-            <nav className="flex items-center gap-2 text-[12px] font-medium"
-              style={{ color: 'var(--text-tertiary)' }}>
+            <nav className="flex items-center gap-2 meta-label" style={{ fontSize: 11 }}>
               <span>Workspace</span>
-              <span>/</span>
-              <span className="font-semibold" style={{ color: 'var(--text-primary)' }}>{current.label}</span>
+              <span style={{ color: 'var(--border-strong)' }}>/</span>
+              <span style={{ color: 'var(--text-primary)', fontWeight: 700 }}>{current.label}</span>
             </nav>
             <div className="flex items-center gap-2">
               <button className="btn-ghost text-[12px]">
                 <FileText size={13} /> Docs
               </button>
-              <button className="btn-primary text-[12px]" style={{ padding: '7px 14px' }}>
-                <Sparkles size={13} /> New deal
-              </button>
             </div>
           </header>
         </div>
 
-        <main className="relative z-10 flex-1 px-4 md:px-8 pt-2 pb-20 md:pb-10 w-full max-w-[1200px]">
+        <main className="flex-1 px-4 md:px-8 pt-4 pb-20 md:pb-10 w-full max-w-[1200px]">
           <Outlet />
         </main>
 

@@ -1,0 +1,5 @@
+# Only ignore bulk source data, NOT the processed sector JSON files
+bulk-data/
+scripts/
+node_modules/
+.git/

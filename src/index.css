@@ -1,75 +1,110 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap');
 
 @layer base {
+  /* ── WPDS-Inspired Light Theme (default) ────────────────────── */
   :root {
     /* Surfaces */
     --bg: #ffffff;
-    --bg-alt: #f6f9fc;
-    --bg-muted: #fafbfc;
+    --bg-alt: #f5f5f0;
+    --bg-muted: #fafaf5;
     --surface: #ffffff;
-    --surface-hover: #f6f9fc;
-    --surface-sunken: #f6f9fc;
+    --surface-hover: #f5f5f0;
+    --surface-sunken: #f5f5f0;
 
-    /* Borders — thin slate hairlines */
-    --border: #e3e8ee;
-    --border-light: #ebeef3;
-    --border-strong: #c1c9d2;
+    /* Borders — editorial ruled lines */
+    --border: #d4d4c8;
+    --border-light: #e6e6dc;
+    --border-strong: #a8a898;
 
-    /* Text — deep slate primary */
-    --text-primary: #0a2540;
-    --text-secondary: #425466;
-    --text-tertiary: #687385;
+    /* Text — deep editorial black */
+    --text-primary: #1a1a1a;
+    --text-secondary: #4a4a4a;
+    --text-tertiary: #767670;
     --text-inverse: #ffffff;
 
-    /* Accent — indigo */
-    --accent: #635bff;
-    --accent-hover: #574fd6;
-    --accent-pressed: #4b44c1;
-    --accent-light: rgba(99, 91, 255, 0.08);
-    --accent-ring: rgba(99, 91, 255, 0.18);
+    /* Accent — gold from ETA brand */
+    --accent: #C4A35A;
+    --accent-hover: #b3933f;
+    --accent-pressed: #9e8238;
+    --accent-light: rgba(196, 163, 90, 0.10);
+    --accent-ring: rgba(196, 163, 90, 0.25);
 
     /* Semantic */
-    --accent-2: #3fcf8e; /* success green */
-    --accent-3: #f0b429; /* warning amber */
-    --danger: #ef4444;
-    --info: #0ea5e9;
+    --accent-2: #3fcf8e;
+    --accent-3: #f0b429;
+    --danger: #c44040;
+    --info: #2f7bd4;
 
-    /* Secondary brand accents */
-    --purple: #a855f7;
-    --blue: #0ea5e9;
-    --pink: #ec4899;
-    --cyan: #22d3ee;
+    /* Secondary accents */
+    --purple: #7c6ab4;
+    --blue: #2f7bd4;
+    --pink: #c46488;
+    --cyan: #3aa8a8;
 
-    /* Radius scale */
-    --radius-sm: 6px;
-    --radius: 10px;
-    --radius-md: 10px;
-    --radius-lg: 14px;
-    --radius-xl: 20px;
+    /* Radius — sharp editorial edges */
+    --radius-sm: 2px;
+    --radius: 2px;
+    --radius-md: 4px;
+    --radius-lg: 4px;
+    --radius-xl: 6px;
     --radius-pill: 999px;
 
-    /* Elevation */
-    --shadow-xs: 0 1px 2px rgba(10, 37, 64, 0.05), 0 0 0 1px rgba(10, 37, 64, 0.04);
-    --shadow-sm: 0 2px 5px rgba(10, 37, 64, 0.06), 0 0 0 1px rgba(10, 37, 64, 0.04);
-    --shadow-md: 0 8px 24px rgba(10, 37, 64, 0.10), 0 0 0 1px rgba(10, 37, 64, 0.04);
-    --shadow-lg: 0 20px 48px rgba(10, 37, 64, 0.14);
+    /* Elevation — minimal, editorial */
+    --shadow-xs: none;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
 
     /* Motion */
     --ease: cubic-bezier(.2, .8, .2, 1);
-    --dur: 150ms;
+    --dur: 120ms;
 
-    /* Typography */
+    /* Typography — editorial hierarchy */
+    --font-headline: 'Playfair Display', Georgia, 'Times New Roman', serif;
     --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-    --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Monaco, Consolas, monospace;
+    --font-meta: 'Inter', -apple-system, sans-serif;
+    --font-mono: ui-monospace, 'SF Mono', Menlo, Monaco, Consolas, monospace;
 
-    /* Signature gradient wash */
-    --gradient-hero:
-      radial-gradient(1200px 500px at 10% -10%, #a5f3fc 0%, transparent 60%),
-      radial-gradient(1000px 500px at 90% -20%, #c7d2fe 0%, transparent 55%),
-      radial-gradient(900px 450px at 50% -30%, #f5d0fe 0%, transparent 60%),
-      linear-gradient(180deg, #ffffff 0%, #f6f9fc 100%);
-    --gradient-slate: linear-gradient(180deg, #f6f9fc 0%, #ffffff 100%);
-    --gradient-accent: linear-gradient(180deg, #6e66ff 0%, #574fd6 100%);
+    /* No gradients — editorial */
+    --gradient-hero: none;
+    --gradient-slate: none;
+    --gradient-accent: var(--accent);
+  }
+
+  /* ── WPDS-Inspired Dark Theme ───────────────────────────────── */
+  .dark {
+    --bg: #111111;
+    --bg-alt: #1a1a1a;
+    --bg-muted: #1f1f1f;
+    --surface: #1a1a1a;
+    --surface-hover: #242424;
+    --surface-sunken: #141414;
+
+    --border: #2a2a2a;
+    --border-light: #333333;
+    --border-strong: #444444;
+
+    --text-primary: #e8e8e0;
+    --text-secondary: #a0a098;
+    --text-tertiary: #707068;
+    --text-inverse: #111111;
+
+    --accent: #C4A35A;
+    --accent-hover: #d4b36a;
+    --accent-pressed: #e4c37a;
+    --accent-light: rgba(196, 163, 90, 0.12);
+    --accent-ring: rgba(196, 163, 90, 0.30);
+
+    --danger: #ef5555;
+    --info: #5aa8ef;
+    --accent-2: #4ae09e;
+    --accent-3: #f0c040;
+
+    --shadow-xs: none;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -80,13 +115,13 @@
     color: var(--text-primary);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-feature-settings: "cv11", "ss01", "ss03";
     text-rendering: optimizeLegibility;
   }
 
   body { min-height: 100dvh; background: var(--bg); }
 
   h1, h2, h3, h4 {
+    font-family: var(--font-headline);
     color: var(--text-primary);
     letter-spacing: -0.02em;
     font-weight: 700;
@@ -96,115 +131,146 @@
 }
 
 @layer components {
-  /* Buttons — Stripe-style pill with subtle vertical gradient */
+  /* ── Editorial Labels ─────────────────────────────────────── */
+  .meta-label {
+    font-family: var(--font-meta);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-tertiary);
+  }
+
+  /* ── Buttons — WPDS-style ─────────────────────────────────── */
   .btn-primary {
     display: inline-flex; align-items: center; gap: 6px;
-    padding: 9px 16px;
-    background: var(--gradient-accent);
-    color: #fff; border: 0;
-    border-radius: var(--radius);
-    font-size: 13px; font-weight: 600; letter-spacing: -0.01em;
+    padding: 10px 20px;
+    background: var(--text-primary);
+    color: var(--text-inverse); border: 0;
+    border-radius: 0;
+    font-size: 13px; font-weight: 700; letter-spacing: 0.02em;
     cursor: pointer; font-family: var(--font);
     white-space: nowrap; text-decoration: none;
-    box-shadow: 0 1px 2px rgba(10, 37, 64, 0.15), inset 0 1px 0 rgba(255,255,255,0.18);
-    transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), filter var(--dur) var(--ease);
+    text-transform: uppercase;
+    transition: opacity var(--dur) var(--ease);
   }
-  .btn-primary:hover { filter: brightness(1.05); box-shadow: 0 3px 10px rgba(99, 91, 255, 0.28), inset 0 1px 0 rgba(255,255,255,0.2); transform: translateY(-0.5px); }
-  .btn-primary:active { transform: translateY(0); filter: brightness(0.98); }
-  .btn-primary:disabled { opacity: .55; cursor: not-allowed; transform: none; filter: none; }
+  .btn-primary:hover { opacity: 0.85; }
+  .btn-primary:active { opacity: 0.7; }
+  .btn-primary:disabled { opacity: .4; cursor: not-allowed; }
 
   .btn-secondary {
     display: inline-flex; align-items: center; gap: 6px;
-    padding: 9px 16px;
-    background: #fff; color: var(--text-primary);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    font-size: 13px; font-weight: 600; letter-spacing: -0.01em;
+    padding: 9px 20px;
+    background: transparent; color: var(--text-primary);
+    border: 2px solid var(--border);
+    border-radius: 0;
+    font-size: 13px; font-weight: 700; letter-spacing: 0.02em;
     cursor: pointer; font-family: var(--font);
     white-space: nowrap; text-decoration: none;
-    box-shadow: 0 1px 2px rgba(10, 37, 64, 0.04);
+    text-transform: uppercase;
     transition: all var(--dur) var(--ease);
   }
-  .btn-secondary:hover { border-color: var(--border-strong); box-shadow: 0 2px 6px rgba(10, 37, 64, 0.06); }
+  .btn-secondary:hover { border-color: var(--text-primary); }
 
   .btn-ghost {
     display: inline-flex; align-items: center; gap: 6px;
     padding: 8px 12px;
     background: transparent; color: var(--text-secondary);
-    border: 0; border-radius: var(--radius);
+    border: 0; border-radius: 0;
     font-size: 13px; font-weight: 600; cursor: pointer; font-family: var(--font);
     transition: all var(--dur) var(--ease);
   }
-  .btn-ghost:hover { background: var(--bg-alt); color: var(--text-primary); }
+  .btn-ghost:hover { color: var(--text-primary); }
 
   .btn-danger {
     display: inline-flex; align-items: center; gap: 6px;
-    padding: 9px 16px;
-    background: #fff; color: var(--danger);
-    border: 1px solid rgba(239, 68, 68, 0.25);
-    border-radius: var(--radius);
-    font-size: 13px; font-weight: 600; cursor: pointer; font-family: var(--font);
+    padding: 9px 20px;
+    background: transparent; color: var(--danger);
+    border: 2px solid var(--danger);
+    border-radius: 0;
+    font-size: 13px; font-weight: 700; cursor: pointer; font-family: var(--font);
     transition: all var(--dur) var(--ease);
   }
-  .btn-danger:hover { background: rgba(239, 68, 68, 0.06); border-color: rgba(239, 68, 68, 0.4); }
+  .btn-danger:hover { background: var(--danger); color: var(--text-inverse); }
 
-  /* Card — hairline border + subtle elevation on hover */
+  /* ── Cards — editorial bordered ───────────────────────────── */
   .card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-xs);
-    transition: box-shadow var(--dur) var(--ease), border-color var(--dur) var(--ease), transform var(--dur) var(--ease);
+    border-radius: 0;
+    transition: border-color var(--dur) var(--ease);
   }
-  .card:hover { box-shadow: var(--shadow-sm); border-color: var(--border-light); }
+  .card:hover { border-color: var(--border-strong); }
 
   .card-flat {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
+    border-radius: 0;
   }
 
-  /* Inputs */
+  /* ── Inputs — WPDS-style ──────────────────────────────────── */
   .input {
     width: 100%;
-    padding: 9px 12px;
-    background: #fff;
+    padding: 10px 14px;
+    background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: var(--radius);
+    border-radius: 0;
     font-size: 13px; color: var(--text-primary);
     outline: none; font-family: var(--font);
-    box-shadow: 0 1px 2px rgba(10, 37, 64, 0.04);
-    transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+    transition: border-color var(--dur) var(--ease);
   }
-  .input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-ring); }
+  .input:focus { border-color: var(--text-primary); }
   .input::placeholder { color: var(--text-tertiary); }
 
-  /* Badge — pill with tabular numerics */
+  /* ── Badge ────────────────────────────────────────────────── */
   .badge {
     display: inline-flex; align-items: center; gap: 4px;
-    padding: 2px 8px;
-    border-radius: var(--radius-pill);
-    font-size: 11px; font-weight: 600;
-    letter-spacing: -0.005em;
+    padding: 3px 10px;
+    border-radius: 0;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
     font-variant-numeric: tabular-nums;
   }
 
-  /* Data utilities */
+  /* ── Utilities ────────────────────────────────────────────── */
   .mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
   .tabular { font-variant-numeric: tabular-nums; }
+  .font-headline { font-family: var(--font-headline); }
+  .font-meta { font-family: var(--font-meta); }
 
-  /* Signature hero wash */
-  .gradient-hero { background: var(--gradient-hero); }
-  .gradient-slate { background: var(--gradient-slate); }
+  /* Ruled section dividers */
+  .ruled { border-bottom: 1px solid var(--border); }
+  .ruled-top { border-top: 1px solid var(--border); }
 
-  /* Hairline divider */
+  /* Left accent border (like WPDS feature cards) */
+  .accent-border-left { border-left: 2px solid var(--accent); }
+
+  /* No more gradients */
+  .gradient-hero { background: var(--bg-alt); }
+  .gradient-slate { background: var(--bg-alt); }
+
+  .text-gradient {
+    color: var(--text-primary);
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+  }
+
+  /* Hairline */
   .hairline { border-color: var(--border); }
 
-  /* Subtle text gradient for display headings */
-  .text-gradient {
-    background: linear-gradient(90deg, #0a2540 0%, #635bff 70%, #22d3ee 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+  /* ── Theme Toggle ─────────────────────────────────────────── */
+  .theme-toggle {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 10px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 0;
+    font-size: 12px; font-weight: 600;
+    color: var(--text-secondary);
+    cursor: pointer; font-family: var(--font);
+    transition: all var(--dur) var(--ease);
   }
+  .theme-toggle:hover { border-color: var(--text-primary); color: var(--text-primary); }
 }
