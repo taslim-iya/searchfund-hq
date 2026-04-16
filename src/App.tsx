@@ -17,6 +17,7 @@ import Qualify from '@/pages/Qualify';
 import Brokers from '@/pages/Brokers';
 import AISearch from '@/pages/AISearch';
 import Settings from '@/pages/Settings';
+import CompanyProfile from '@/pages/CompanyProfile';
 
 export default function App() {
   return (
@@ -39,6 +40,7 @@ export default function App() {
           <Route path="/crm" element={<CRM />} />
           <Route path="/qualify" element={<Qualify />} />
           <Route path="/brokers" element={<Brokers />} />
+          <Route path="/company/:number" element={<CompanyProfile />} />
           <Route path="/settings" element={<Settings />} />
         </Route>
       </Routes>
