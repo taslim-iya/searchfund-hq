@@ -26,15 +26,22 @@ export default function MassSourced() {
     fetch('/data/summary.json').then(r => r.json()).then(setSummary).catch(() => {});
   }, []);
 
+  const [loadError, setLoadError] = useState('');
+
   const loadSector = useCallback(async (slug: string) => {
     if (sectorData[slug]) { setActiveSector(slug); setPage(0); return; }
     setLoadingSector(slug);
+    setLoadError('');
     try {
-      const data = await fetch(`/data/sectors/${slug}.json`).then(r => r.json());
+      const res = await fetch(`/data/sectors/${slug}.json`);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = await res.json();
       setSectorData(prev => ({ ...prev, [slug]: data }));
       setActiveSector(slug);
       setPage(0);
-    } catch { }
+    } catch (e: any) {
+      setLoadError(`Failed to load sector data. File may be too large for static hosting. (${e.message})`);
+    }
     setLoadingSector('');
   }, [sectorData]);
 
