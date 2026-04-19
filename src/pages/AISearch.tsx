@@ -101,12 +101,12 @@ If user says "North" set locations to northern cities.`;
       const res = await fetch('/api/ai', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt }),
+        body: JSON.stringify({ messages: [{ role: 'user', content: prompt }] }),
       });
 
       if (!res.ok) throw new Error('AI request failed');
       const data = await res.json();
-      const content = data.choices?.[0]?.message?.content || '';
+      const content = data.content || data.choices?.[0]?.message?.content || '';
       const jsonMatch = content.match(/\{[\s\S]*\}/);
       if (!jsonMatch) throw new Error('No JSON in response');
 
