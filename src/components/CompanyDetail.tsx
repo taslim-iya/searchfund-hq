@@ -19,8 +19,10 @@ export default function CompanyDetail({ companyNumber, companyName, onClose }: P
   const [pscs, setPscs] = useState<PSC[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const [tab, setTab] = useState<'overview' | 'people' | 'filings' | 'history'>('overview');
+  const [tab, setTab] = useState<'overview' | 'financials' | 'people' | 'filings' | 'history'>('overview');
   const [showResigned, setShowResigned] = useState(false);
+  const [financialData, setFinancialData] = useState<any[]>([]);
+  const [financialsLoading, setFinancialsLoading] = useState(false);
 
   const chFetch = (path: string) => fetch(`/api/companies-house?path=${encodeURIComponent(path)}`).then(r => r.json());
 
@@ -59,8 +61,19 @@ export default function CompanyDetail({ companyNumber, companyName, onClose }: P
   const confirmationFilings = filings.filter(f => f.category === 'confirmation-statement');
   const otherFilings = filings.filter(f => f.category !== 'accounts' && f.category !== 'confirmation-statement');
 
+  // Load financials when tab is clicked
+  const loadFinancials = () => {
+    if (financialData.length > 0 || financialsLoading) return;
+    setFinancialsLoading(true);
+    fetch(`/api/company-accounts?number=${companyNumber}`)
+      .then(r => r.json())
+      .then(data => { setFinancialData(data.accounts || []); setFinancialsLoading(false); })
+      .catch(() => setFinancialsLoading(false));
+  };
+
   const TABS = [
     { id: 'overview' as const, label: 'Overview', icon: Building2 },
+    { id: 'financials' as const, label: 'Financials', icon: Banknote },
     { id: 'people' as const, label: `People (${officers.length + pscs.length})`, icon: Users },
     { id: 'filings' as const, label: `Filings (${filings.length})`, icon: FileText },
     { id: 'history' as const, label: 'History', icon: Clock },
@@ -99,7 +112,7 @@ export default function CompanyDetail({ companyNumber, companyName, onClose }: P
           </div>
           <div className="flex px-5">
             {TABS.map(t => (
-              <button key={t.id} onClick={() => setTab(t.id)} className="flex items-center gap-1.5 px-3 py-2 text-[11px] font-medium border-b-2 -mb-px transition-colors"
+              <button key={t.id} onClick={() => { setTab(t.id); if (t.id === 'financials') loadFinancials(); }} className="flex items-center gap-1.5 px-3 py-2 text-[11px] font-medium border-b-2 -mb-px transition-colors"
                 style={{ borderColor: tab === t.id ? 'var(--accent)' : 'transparent', color: tab === t.id ? 'var(--accent)' : 'var(--text-tertiary)' }}>
                 <t.icon size={12} /> {t.label}
               </button>
@@ -195,6 +208,85 @@ export default function CompanyDetail({ companyNumber, companyName, onClose }: P
                       ))}
                     </Section>
                   )}
+                </div>
+              )}
+
+              {/* FINANCIALS TAB */}
+              {tab === 'financials' && (
+                <div className="space-y-4">
+                  <Section title="Accounts Filing History" icon={Banknote}>
+                    {financialsLoading ? (
+                      <div className="flex items-center gap-2 py-6 justify-center">
+                        <Loader2 size={16} className="animate-spin" style={{ color: 'var(--accent)' }} />
+                        <span className="text-[12px]" style={{ color: 'var(--text-tertiary)' }}>Loading accounts...</span>
+                      </div>
+                    ) : financialData.length > 0 ? (
+                      <div>
+                        <table className="w-full text-[11px]" style={{ borderCollapse: 'collapse' }}>
+                          <thead>
+                            <tr style={{ borderBottom: '2px solid var(--border)' }}>
+                              <th className="text-left py-1.5 px-2 font-semibold" style={{ color: 'var(--text-tertiary)', fontSize: 10 }}>YEAR END</th>
+                              <th className="text-left py-1.5 px-2 font-semibold" style={{ color: 'var(--text-tertiary)', fontSize: 10 }}>FILED</th>
+                              <th className="text-left py-1.5 px-2 font-semibold" style={{ color: 'var(--text-tertiary)', fontSize: 10 }}>TYPE</th>
+                              <th className="text-right py-1.5 px-2 font-semibold" style={{ color: 'var(--text-tertiary)', fontSize: 10 }}>VIEW</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {financialData.map((acc: any, i: number) => {
+                              const chDocUrl = `https://find-and-update.company-information.service.gov.uk/company/${companyNumber}/filing-history/${acc.transactionId}/document`;
+                              const yearEnd = acc.madeUpTo || acc.date;
+                              const accType = acc.type?.replace(/^AA/, '').replace(/-/g, ' ') || '';
+                              return (
+                                <tr key={i} className="border-b hover:bg-[var(--bg-alt)]" style={{ borderColor: 'var(--border-light)' }}>
+                                  <td className="py-2 px-2 font-semibold">{yearEnd}</td>
+                                  <td className="py-2 px-2" style={{ color: 'var(--text-secondary)' }}>{acc.date}</td>
+                                  <td className="py-2 px-2">
+                                    <span className="px-1.5 py-0.5 rounded text-[9px] font-medium" style={{ background: '#3b82f612', color: '#3b82f6' }}>
+                                      {accType || acc.type}
+                                    </span>
+                                  </td>
+                                  <td className="py-2 px-2 text-right">
+                                    <a href={chDocUrl} target="_blank" rel="noopener noreferrer"
+                                      className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-semibold"
+                                      style={{ background: 'var(--accent)', color: '#fff', textDecoration: 'none' }}>
+                                      <FileText size={10} /> View
+                                    </a>
+                                  </td>
+                                </tr>
+                              );
+                            })}
+                          </tbody>
+                        </table>
+                      </div>
+                    ) : (
+                      <p className="text-[12px] text-center py-6" style={{ color: 'var(--text-tertiary)' }}>No accounts filings found for this company.</p>
+                    )}
+                  </Section>
+
+                  {/* Quick summary from profile */}
+                  {profile && (
+                    <Section title="Accounts Summary" icon={Shield}>
+                      <div className="grid grid-cols-2 gap-2">
+                        <MiniCard label="Last Filed To" value={lastAccounts?.made_up_to || '-'} sub={lastAccounts?.type?.replace(/-/g, ' ')} />
+                        <MiniCard label="Next Due" value={nextAccounts?.due_on || '-'} alert={accounts?.overdue} />
+                        <MiniCard label="Filing Period" value={lastAccounts ? `${lastAccounts.period_start_on} to ${lastAccounts.period_end_on}` : '-'} />
+                        <MiniCard label="Charges" value={profile.has_charges ? 'Yes - has charges' : 'None'} alert={profile.has_charges} />
+                      </div>
+                    </Section>
+                  )}
+
+                  <div className="p-3 rounded-lg text-[11px]" style={{ background: 'var(--bg-alt)', color: 'var(--text-tertiary)' }}>
+                    <p className="font-medium mb-1">About Companies House Financials</p>
+                    <p>Click "View" to see the full accounts on Companies House. Documents include balance sheets, profit & loss, and notes. Small/micro companies file abbreviated accounts with limited data.</p>
+                  </div>
+
+                  {/* Full page link */}
+                  <a href={`https://find-and-update.company-information.service.gov.uk/company/${companyNumber}/filing-history`}
+                    target="_blank" rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 py-2.5 rounded-lg text-[12px] font-semibold"
+                    style={{ border: '1px solid var(--border)', color: 'var(--accent)', textDecoration: 'none' }}>
+                    <ExternalLink size={12} /> View all filings on Companies House
+                  </a>
                 </div>
               )}
 
