@@ -23,6 +23,8 @@ export default function CompanyDetail({ companyNumber, companyName, onClose }: P
   const [showResigned, setShowResigned] = useState(false);
   const [financialData, setFinancialData] = useState<any[]>([]);
   const [financialsLoading, setFinancialsLoading] = useState(false);
+  const [realFinancials, setRealFinancials] = useState<any[]>([]);
+  const [realFinancialsLoading, setRealFinancialsLoading] = useState(false);
 
   const chFetch = (path: string) => fetch(`/api/companies-house?path=${encodeURIComponent(path)}`).then(r => r.json());
 
@@ -69,6 +71,14 @@ export default function CompanyDetail({ companyNumber, companyName, onClose }: P
       .then(r => r.json())
       .then(data => { setFinancialData(data.accounts || []); setFinancialsLoading(false); })
       .catch(() => setFinancialsLoading(false));
+    // Also fetch real parsed financials
+    if (realFinancials.length === 0 && !realFinancialsLoading) {
+      setRealFinancialsLoading(true);
+      fetch(`/api/company-financials?number=${companyNumber}`)
+        .then(r => r.json())
+        .then(data => { setRealFinancials(data.financials || []); setRealFinancialsLoading(false); })
+        .catch(() => setRealFinancialsLoading(false));
+    }
   };
 
   const TABS = [
@@ -214,73 +224,144 @@ export default function CompanyDetail({ companyNumber, companyName, onClose }: P
               {/* FINANCIALS TAB */}
               {tab === 'financials' && (
                 <div className="space-y-4">
-                  <Section title="Accounts Filing History" icon={Banknote}>
-                    {financialsLoading ? (
-                      <div className="flex items-center gap-2 py-6 justify-center">
-                        <Loader2 size={16} className="animate-spin" style={{ color: 'var(--accent)' }} />
-                        <span className="text-[12px]" style={{ color: 'var(--text-tertiary)' }}>Loading accounts...</span>
-                      </div>
-                    ) : financialData.length > 0 ? (
-                      <div>
-                        <table className="w-full text-[11px]" style={{ borderCollapse: 'collapse' }}>
-                          <thead>
-                            <tr style={{ borderBottom: '2px solid var(--border)' }}>
-                              <th className="text-left py-1.5 px-2 font-semibold" style={{ color: 'var(--text-tertiary)', fontSize: 10 }}>YEAR END</th>
-                              <th className="text-left py-1.5 px-2 font-semibold" style={{ color: 'var(--text-tertiary)', fontSize: 10 }}>FILED</th>
-                              <th className="text-left py-1.5 px-2 font-semibold" style={{ color: 'var(--text-tertiary)', fontSize: 10 }}>TYPE</th>
-                              <th className="text-right py-1.5 px-2 font-semibold" style={{ color: 'var(--text-tertiary)', fontSize: 10 }}>VIEW</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {financialData.map((acc: any, i: number) => {
-                              const chDocUrl = `https://find-and-update.company-information.service.gov.uk/company/${companyNumber}/filing-history/${acc.transactionId}/document`;
-                              const yearEnd = acc.madeUpTo || acc.date;
-                              const accType = acc.type?.replace(/^AA/, '').replace(/-/g, ' ') || '';
-                              return (
-                                <tr key={i} className="border-b hover:bg-[var(--bg-alt)]" style={{ borderColor: 'var(--border-light)' }}>
-                                  <td className="py-2 px-2 font-semibold">{yearEnd}</td>
-                                  <td className="py-2 px-2" style={{ color: 'var(--text-secondary)' }}>{acc.date}</td>
-                                  <td className="py-2 px-2">
-                                    <span className="px-1.5 py-0.5 rounded text-[9px] font-medium" style={{ background: '#3b82f612', color: '#3b82f6' }}>
-                                      {accType || acc.type}
-                                    </span>
-                                  </td>
-                                  <td className="py-2 px-2 text-right">
-                                    <a href={chDocUrl} target="_blank" rel="noopener noreferrer"
-                                      className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-semibold"
-                                      style={{ background: 'var(--accent)', color: '#fff', textDecoration: 'none' }}>
-                                      <FileText size={10} /> View
-                                    </a>
-                                  </td>
-                                </tr>
-                              );
-                            })}
-                          </tbody>
-                        </table>
-                      </div>
-                    ) : (
-                      <p className="text-[12px] text-center py-6" style={{ color: 'var(--text-tertiary)' }}>No accounts filings found for this company.</p>
-                    )}
-                  </Section>
+                  {/* Real Financial Data */}
+                  {realFinancialsLoading ? (
+                    <div className="flex items-center gap-2 py-8 justify-center">
+                      <Loader2 size={16} className="animate-spin" style={{ color: 'var(--accent)' }} />
+                      <span className="text-[12px]" style={{ color: 'var(--text-tertiary)' }}>Parsing financial accounts...</span>
+                    </div>
+                  ) : realFinancials.length > 0 ? (
+                    <>
+                      {/* Key Metrics Summary Cards */}
+                      {(() => {
+                        const latest = realFinancials[0];
+                        const prev = realFinancials[1];
+                        const fmt = (v?: number) => v != null ? (v < 0 ? '-' : '') + '£' + Math.abs(v).toLocaleString() : '-';
+                        const pct = (curr?: number, prev?: number) => {
+                          if (curr == null || prev == null || prev === 0) return null;
+                          return ((curr - prev) / Math.abs(prev) * 100).toFixed(0);
+                        };
+                        const change = pct(latest?.netAssets, prev?.netAssets);
+                        return (
+                          <div className="grid grid-cols-3 gap-2 mb-4">
+                            <div className="p-3 rounded-lg" style={{ background: 'var(--bg-alt)' }}>
+                              <p className="text-[9px] font-semibold" style={{ color: 'var(--text-tertiary)' }}>NET ASSETS</p>
+                              <p className="text-[16px] font-bold" style={{ color: latest?.netAssets && latest.netAssets < 0 ? '#ef4444' : 'var(--text-primary)' }}>{fmt(latest?.netAssets)}</p>
+                              {change && <p className="text-[10px] font-semibold" style={{ color: parseInt(change) >= 0 ? '#10b981' : '#ef4444' }}>{parseInt(change) >= 0 ? '▲' : '▼'} {Math.abs(parseInt(change))}% vs prior year</p>}
+                            </div>
+                            <div className="p-3 rounded-lg" style={{ background: 'var(--bg-alt)' }}>
+                              <p className="text-[9px] font-semibold" style={{ color: 'var(--text-tertiary)' }}>CASH AT BANK</p>
+                              <p className="text-[16px] font-bold">{fmt(latest?.cashAtBank)}</p>
+                              {latest?.employees != null && <p className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>{latest.employees} employees</p>}
+                            </div>
+                            <div className="p-3 rounded-lg" style={{ background: 'var(--bg-alt)' }}>
+                              <p className="text-[9px] font-semibold" style={{ color: 'var(--text-tertiary)' }}>{latest?.turnover != null ? 'TURNOVER' : 'CURRENT ASSETS'}</p>
+                              <p className="text-[16px] font-bold">{fmt(latest?.turnover ?? latest?.currentAssets)}</p>
+                              {latest?.turnover != null && pct(latest?.turnover, prev?.turnover) && (
+                                <p className="text-[10px] font-semibold" style={{ color: parseInt(pct(latest?.turnover, prev?.turnover)!) >= 0 ? '#10b981' : '#ef4444' }}>
+                                  {parseInt(pct(latest?.turnover, prev?.turnover)!) >= 0 ? '▲' : '▼'} {Math.abs(parseInt(pct(latest?.turnover, prev?.turnover)!))}% vs prior
+                                </p>
+                              )}
+                            </div>
+                          </div>
+                        );
+                      })()}
 
-                  {/* Quick summary from profile */}
-                  {profile && (
-                    <Section title="Accounts Summary" icon={Shield}>
-                      <div className="grid grid-cols-2 gap-2">
-                        <MiniCard label="Last Filed To" value={lastAccounts?.made_up_to || '-'} sub={lastAccounts?.type?.replace(/-/g, ' ')} />
-                        <MiniCard label="Next Due" value={nextAccounts?.due_on || '-'} alert={accounts?.overdue} />
-                        <MiniCard label="Filing Period" value={lastAccounts ? `${lastAccounts.period_start_on} to ${lastAccounts.period_end_on}` : '-'} />
-                        <MiniCard label="Charges" value={profile.has_charges ? 'Yes - has charges' : 'None'} alert={profile.has_charges} />
+                      {/* Year-by-year table */}
+                      <Section title="Balance Sheet (from filed accounts)" icon={Banknote}>
+                        <div style={{ overflowX: 'auto' }}>
+                          <table className="w-full text-[11px]" style={{ borderCollapse: 'collapse', minWidth: 400 }}>
+                            <thead>
+                              <tr style={{ borderBottom: '2px solid var(--border)' }}>
+                                <th className="text-left py-1.5 px-2 font-semibold sticky left-0" style={{ color: 'var(--text-tertiary)', fontSize: 10, background: 'var(--bg-primary)' }}></th>
+                                {realFinancials.map((f: any, i: number) => (
+                                  <th key={i} className="text-right py-1.5 px-2 font-bold" style={{ color: i === 0 ? 'var(--accent)' : 'var(--text-secondary)', fontSize: 10 }}>
+                                    {f.yearEnd}
+                                  </th>
+                                ))}
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {[
+                                { label: 'Turnover', key: 'turnover' },
+                                { label: 'Gross Profit', key: 'grossProfit' },
+                                { label: 'Operating Profit', key: 'operatingProfit' },
+                                { label: 'Profit Before Tax', key: 'profitBeforeTax' },
+                                { label: 'Fixed Assets', key: 'fixedAssets', section: true },
+                                { label: 'Current Assets', key: 'currentAssets' },
+                                { label: '  Debtors', key: 'debtors', indent: true },
+                                { label: '  Cash at Bank', key: 'cashAtBank', indent: true },
+                                { label: 'Current Liabilities', key: 'currentLiabilities' },
+                                { label: '  Trade Creditors', key: 'tradeCreditors', indent: true },
+                                { label: 'Net Current Assets', key: 'totalAssetsLessCurrentLiabilities', section: true },
+                                { label: 'Net Assets', key: 'netAssets', bold: true },
+                                { label: 'Shareholders Funds', key: 'equity' },
+                                { label: 'Employees', key: 'employees', section: true },
+                              ].filter(row => realFinancials.some((f: any) => f[row.key] != null)).map((row, ri) => (
+                                <tr key={ri} className={row.section ? 'border-t' : ''} style={{ borderColor: 'var(--border-light)' }}>
+                                  <td className="py-1.5 px-2 sticky left-0" style={{ background: 'var(--bg-primary)', fontWeight: row.bold ? 700 : row.indent ? 400 : 500, color: row.indent ? 'var(--text-tertiary)' : 'var(--text-secondary)', fontSize: row.indent ? 10 : 11 }}>
+                                    {row.label}
+                                  </td>
+                                  {realFinancials.map((f: any, ci: number) => {
+                                    const val = f[row.key];
+                                    const isNeg = val != null && val < 0;
+                                    const display = val != null
+                                      ? (row.key === 'employees' ? val.toLocaleString() : (isNeg ? '-' : '') + '£' + Math.abs(val).toLocaleString())
+                                      : '-';
+                                    return (
+                                      <td key={ci} className="py-1.5 px-2 text-right tabular-nums" style={{
+                                        fontWeight: row.bold ? 700 : 400,
+                                        color: isNeg ? '#ef4444' : ci === 0 ? 'var(--text-primary)' : 'var(--text-secondary)',
+                                        borderBottom: row.bold ? '2px solid var(--border)' : undefined,
+                                      }}>
+                                        {display}
+                                      </td>
+                                    );
+                                  })}
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </Section>
+                    </>
+                  ) : !realFinancialsLoading && (
+                    <div className="p-4 rounded-lg text-center" style={{ background: 'var(--bg-alt)' }}>
+                      <p className="text-[12px] font-medium" style={{ color: 'var(--text-secondary)' }}>No parseable financial data found</p>
+                      <p className="text-[11px] mt-1" style={{ color: 'var(--text-tertiary)' }}>This company may file abbreviated or dormant accounts. Use the View links below to check the original documents.</p>
+                    </div>
+                  )}
+
+                  {/* Filing links table */}
+                  {financialData.length > 0 && (
+                    <Section title="Accounts Filings" icon={FileText}>
+                      <div>
+                        {financialData.map((acc: any, i: number) => {
+                          const chDocUrl = `https://find-and-update.company-information.service.gov.uk/company/${companyNumber}/filing-history/${acc.transactionId}/document`;
+                          return (
+                            <div key={i} className="flex items-center gap-3 py-1.5 border-b last:border-0" style={{ borderColor: 'var(--border-light)' }}>
+                              <span className="text-[11px] font-semibold w-[75px] flex-shrink-0">{acc.madeUpTo || acc.date}</span>
+                              <span className="text-[10px] flex-1" style={{ color: 'var(--text-tertiary)' }}>Filed {acc.date}</span>
+                              <a href={chDocUrl} target="_blank" rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-semibold flex-shrink-0"
+                                style={{ background: 'var(--accent)', color: '#fff', textDecoration: 'none' }}>
+                                <FileText size={9} /> View
+                              </a>
+                            </div>
+                          );
+                        })}
                       </div>
                     </Section>
                   )}
 
-                  <div className="p-3 rounded-lg text-[11px]" style={{ background: 'var(--bg-alt)', color: 'var(--text-tertiary)' }}>
-                    <p className="font-medium mb-1">About Companies House Financials</p>
-                    <p>Click "View" to see the full accounts on Companies House. Documents include balance sheets, profit & loss, and notes. Small/micro companies file abbreviated accounts with limited data.</p>
-                  </div>
+                  {/* Summary cards */}
+                  {profile && (
+                    <div className="grid grid-cols-2 gap-2">
+                      <MiniCard label="Next Accounts Due" value={nextAccounts?.due_on || '-'} alert={accounts?.overdue} />
+                      <MiniCard label="Charges" value={profile.has_charges ? 'Has charges' : 'None'} alert={profile.has_charges} />
+                    </div>
+                  )}
 
-                  {/* Full page link */}
                   <a href={`https://find-and-update.company-information.service.gov.uk/company/${companyNumber}/filing-history`}
                     target="_blank" rel="noopener noreferrer"
                     className="flex items-center justify-center gap-2 py-2.5 rounded-lg text-[12px] font-semibold"
